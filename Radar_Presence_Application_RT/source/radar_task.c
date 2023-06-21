@@ -39,12 +39,7 @@
  ******************************************************************************/
 
 #ifdef TARGET_CYSBSYSKIT_DEV_01
-/* Pin number designated for LED RED */
-#define LED_RGB_RED (P10_0)
-/* Pin number designated for LED GREEN */
-#define LED_RGB_GREEN (P10_1)
-/* Pin number designated for LED BLUE */
-#define LED_RGB_BLUE (P10_2)
+
 /* Pin number designated for MISO PIN */
 #define CYBSP_RADAR_SPI_MISO (P0_3)
 /* Pin number designated for MOSI PIN */
@@ -70,10 +65,6 @@
 #define LED_RGB_BLUE (CYBSP_LED_RGB_BLUE)
 #endif
 
-/* LED off */
-#define LED_STATE_OFF (0U)
-/* LED on */
-#define LED_STATE_ON (1U)
 /* RADAR sensor SPI frequency */
 #define SPI_FREQUENCY (20000000UL)
 

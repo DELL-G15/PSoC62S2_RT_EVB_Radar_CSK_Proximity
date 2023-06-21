@@ -34,19 +34,19 @@
 #include <stddef.h>
 
 /* General */
-#define CY_CAPSENSE_WIDGET_COUNT                                                 (1u)
+#define CY_CAPSENSE_WIDGET_COUNT                                                 (2u)
 #define CY_CAPSENSE_ACTIVE_WIDGET_COUNT                                          (CY_CAPSENSE_WIDGET_COUNT)
 #define CY_CAPSENSE_LP_WIDGET_COUNT                                              (0u)
 #define CY_CAPSENSE_TOTAL_WIDGET_COUNT                                           (CY_CAPSENSE_WIDGET_COUNT)
-#define CY_CAPSENSE_SENSOR_COUNT                                                 (1u)
-#define CY_CAPSENSE_ELTD_COUNT                                                   (1u)
-#define CY_CAPSENSE_PIN_COUNT                                                    (1u)
+#define CY_CAPSENSE_SENSOR_COUNT                                                 (2u)
+#define CY_CAPSENSE_ELTD_COUNT                                                   (2u)
+#define CY_CAPSENSE_PIN_COUNT                                                    (2u)
 #define CY_CAPSENSE_SHIELD_PIN_COUNT                                             (0u)
 #define CY_CAPSENSE_POSITION_SIZE                                                (0u)
-#define CY_CAPSENSE_DEBOUNCE_SIZE                                                (2u)
+#define CY_CAPSENSE_DEBOUNCE_SIZE                                                (4u)
 #define CY_CAPSENSE_NOISE_ENVELOPE_SIZE                                          (0u)
 #define CY_CAPSENSE_MFS_CH_NUMBER                                                (1u)
-#define CY_CAPSENSE_RAW_HISTORY_SIZE                                             (2u)
+#define CY_CAPSENSE_RAW_HISTORY_SIZE                                             (4u)
 #define CY_CAPSENSE_IIR_HISTORY_LOW_SIZE                                         (0u)
 #define CY_CAPSENSE_POSITION_FILTER_HISTORY_SIZE                                 (0u)
 #define CY_CAPSENSE_TOUCH_FILTER_HISTORY_SIZE                                    (0u)
@@ -133,7 +133,7 @@
 #define CY_CAPSENSE_GESTURE_EN                                                   (0u)
 #define CY_CAPSENSE_MULTI_FREQUENCY_SCAN_EN                                      (0u)
 #define CY_CAPSENSE_MULTI_FREQUENCY_WIDGET_EN                                    (0u)
-#define CY_CAPSENSE_SNS_AUTO_RESET_EN                                            (0u)
+#define CY_CAPSENSE_SNS_AUTO_RESET_EN                                            (1u)
 
 /* Self-test */
 #define CY_CAPSENSE_BIST_EN                                                      (0u)

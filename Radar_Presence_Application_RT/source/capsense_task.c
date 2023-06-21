@@ -12,6 +12,9 @@
 /* Header file includes */
 #include "cy_retarget_io.h"
 #include "cyhal.h"
+#include "radar_task.h" // to use the LED define
+
+#define WIRED_PROXIMITY 1
 
 static uint32_t initialize_capsense(void);
 static void process_touch(void);
@@ -117,6 +120,29 @@ static void process_touch(void)
 {
     uint32_t proximity_status;
 
+#ifdef WIRED_PROXIMITY
+
+    /* Get proximity 0 status */
+    proximity_status = Cy_CapSense_IsProximitySensorActive(
+    	CY_CAPSENSE_PROXIMITYW_WDGT_ID,
+		CY_CAPSENSE_PROXIMITYW_SNS0_ID,
+        &cy_capsense_context);
+
+    if(proximity_status)
+    {
+    	//Cy_GPIO_Clr(10,2);
+    	printf("Proximity 0-30cm \r\n");
+    	cyhal_gpio_write(LED_RGB_BLUE, LED_STATE_ON);
+    	vTaskDelay(200);
+    }
+    else
+    {
+    	cyhal_gpio_write(LED_RGB_BLUE, LED_STATE_OFF);
+    	//Cy_GPIO_Set(10,2);
+    	//printf("Release\r\n");
+    }
+
+#else
     /* Get proximity 0 status */
     proximity_status = Cy_CapSense_IsProximitySensorActive(
     	CY_CAPSENSE_PROXIMITY0_WDGT_ID,
@@ -124,16 +150,19 @@ static void process_touch(void)
         &cy_capsense_context);
 
 
+
     if(proximity_status)
     {
     	//Cy_GPIO_Clr(LED2_PORT,LED2_NUM);
     	printf("Proximity 0-30cm \r\n");
+    	vTaskDelay(500);
     }
     else
     {
     	//Cy_GPIO_Set(LED2_PORT,LED2_NUM);
     	//printf("Release\r\n");
     }
+#endif
 }
 
 /*******************************************************************************

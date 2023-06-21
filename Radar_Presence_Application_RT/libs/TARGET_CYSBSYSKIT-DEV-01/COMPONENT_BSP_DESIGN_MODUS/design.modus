@@ -14,10 +14,11 @@
                     <Personality template="mxs40csd" version="2.0">
                         <Param id="CapSenseEnable" value="true"/>
                         <Param id="CapSenseCore" value="4"/>
-                        <Param id="SensorCount" value="2"/>
+                        <Param id="SensorCount" value="3"/>
                         <Param id="CapacitorCount" value="1"/>
                         <Param id="SensorName0" value="Cmod"/>
                         <Param id="SensorName1" value="Proximity0_Sns0"/>
+                        <Param id="SensorName2" value="ProximityW_Sns0"/>
                         <Param id="CapSenseConfigurator" value="0"/>
                         <Param id="CapSenseTuner" value="0"/>
                         <Param id="CsdAdcEnable" value="false"/>
@@ -459,6 +460,9 @@
                     </Arm>
                     <Arm>
                         <Port name="ioss[0].port[10].pin[5].analog[0]"/>
+                    </Arm>
+                    <Arm>
+                        <Port name="ioss[0].port[10].pin[4].analog[0]"/>
                     </Arm>
                 </Mux>
             </Netlist>

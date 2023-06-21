@@ -153,7 +153,7 @@ static const cy_stc_capsense_common_config_t cy_capsense_commonConfig =
     .ssIrefSource = CY_CAPSENSE_IREF_SRSS,
     .ssVrefSource = CY_CAPSENSE_VREF_SRSS,
     .proxTouchCoeff = 300u,
-    .swSensorAutoResetEn = CY_CAPSENSE_DISABLE,
+    .swSensorAutoResetEn = CY_CAPSENSE_ENABLE,
     .portCmodPadNum = CSD_CMODPADS_PORT,
     .pinCmodPad = CSD_CMODPADS_PIN,
     .portCshPadNum = CSD_CSH_TANKPADS_PORT,
@@ -389,6 +389,10 @@ static const cy_stc_capsense_pin_config_t cy_capsense_pinConfig[CY_CAPSENSE_PIN_
         Proximity0_Sns0_PORT,
         Proximity0_Sns0_PIN,
     },
+    { /* ProximityW_Sns0 */
+        ProximityW_Sns0_PORT,
+        ProximityW_Sns0_PIN,
+    },
 };
 
 #if (CY_CAPSENSE_SHIELD_PIN_COUNT > 0)
@@ -402,6 +406,11 @@ static const cy_stc_capsense_pin_config_t cy_capsense_pinConfig[CY_CAPSENSE_PIN_
     {
         { /* Proximity0_Sns0 */
             .ptrPin = &cy_capsense_pinConfig[0u],
+            .type = (uint8_t)CY_CAPSENSE_ELTD_TYPE_SELF_E,
+            .numPins = 1u,
+        },
+        { /* ProximityW_Sns0 */
+            .ptrPin = &cy_capsense_pinConfig[1u],
             .type = (uint8_t)CY_CAPSENSE_ELTD_TYPE_SELF_E,
             .numPins = 1u,
         },
@@ -466,17 +475,73 @@ static const cy_stc_capsense_widget_config_t cy_capsense_widgetConfig[CY_CAPSENS
         #endif
         .wdType = (uint8_t)CY_CAPSENSE_WD_PROXIMITY_E,
     },
+    { /* ProximityW */
+        .ptrWdContext = &cy_capsense_tuner.widgetContext[1u],
+        .ptrSnsContext = &cy_capsense_tuner.sensorContext[1u],
+        .ptrEltdConfig = &cy_capsense_electrodeConfig[1u],
+#if (CY_CAPSENSE_BIST_SUPPORTED)
+        .ptrEltdCapacitance = NULL,
+        .ptrBslnInv = NULL,
+#endif
+        .ptrNoiseEnvelope = NULL,
+        .ptrRawFilterHistory = &cy_capsense_rawFilterHistory[2u],
+        .ptrRawFilterHistoryLow = NULL,
+        .iirCoeff = 128u,
+        .ptrDebounceArr = &cy_capsense_debounce[2u],
+        .ptrDiplexTable = NULL,
+        .centroidConfig = 0u,
+        .xResolution = 0u,
+        .yResolution = 0u,
+        .numSns = 1u,
+        .numCols = 1u,
+        .numRows = 0u,
+        .ptrPosFilterHistory = NULL,
+        .ptrCsxTouchHistory = NULL,
+        .ptrCsxTouchBuffer = NULL,
+        .ptrCsdTouchBuffer = NULL,
+        .ptrGestureConfig = NULL,
+        .ptrGestureContext = NULL,
+        .ballisticConfig = {
+            .accelCoeff = 9u,
+            .speedCoeff = 2u,
+            .divisorValue = 4u,
+            .speedThresholdX = 3u,
+            .speedThresholdY = 4u,
+        },
+        .ptrBallisticContext = NULL,
+        .aiirConfig = {
+            .maxK = 60u,
+            .minK = 1u,
+            .noMovTh = 3u,
+            .littleMovTh = 7u,
+            .largeMovTh = 12u,
+            .divVal = 64u,
+        },
+        .advConfig = {
+            .penultimateTh = 100u,
+            .virtualSnsTh = 100u,
+            .crossCouplingTh = 5u,
+        },
+        .posFilterConfig = 0u,
+        .rawFilterConfig = 18u,
+        #if (CY_CAPSENSE_MW_VERSION >= 300)
+            .senseMethod = CY_CAPSENSE_CSD_GROUP,
+        #else
+            .senseMethod = CY_CAPSENSE_SENSE_METHOD_CSD_E,
+        #endif
+        .wdType = (uint8_t)CY_CAPSENSE_WD_PROXIMITY_E,
+    },
 };
 
 cy_stc_capsense_tuner_t cy_capsense_tuner =
 {
     .commonContext = {
         #if (CY_CAPSENSE_MW_VERSION < 300)
-            .configId = 0xcb38,
+            .configId = 0x9760,
         #elif (CY_CAPSENSE_MW_VERSION < 400)
-            .configId = 0xcb39,
+            .configId = 0x9761,
         #else
-            .configId = 0xcb3a,
+            .configId = 0x9762,
         #endif
 
         .tunerCmd = 0u,
@@ -492,7 +557,7 @@ cy_stc_capsense_tuner_t cy_capsense_tuner =
         .status = 0u,
         .timestampInterval = 1u,
         .timestamp = 0u,
-        .modCsdClk = 2u,
+        .modCsdClk = 8u,
         .modCsxClk = 2u,
         .tunerCnt = 0u,
     },
@@ -500,13 +565,45 @@ cy_stc_capsense_tuner_t cy_capsense_tuner =
         { /* Proximity0 */
             .fingerCap = 160u,
             .sigPFC = 0u,
-            .resolution = 15u,
+            .resolution = 12u,
             .maxRawCount = 0u,
             #if (CY_CAPSENSE_MW_VERSION >= 300)
                 .maxRawCountRow = 0u,
             #endif
             .fingerTh = 100u,
             .proxTh = 240u,
+            .lowBslnRst = 30u,
+            .snsClk = 8u,
+            .rowSnsClk = 4u,
+            .gestureDetected = 0u,
+            .gestureDirection = 0u,
+            .xDelta = 0,
+            .yDelta = 0,
+            .noiseTh = 40u,
+            .nNoiseTh = 40u,
+            .hysteresis = 10u,
+            .onDebounce = 3u,
+            .snsClkSource = CY_CAPSENSE_CLK_SOURCE_AUTO_MASK,
+            .idacMod = { 29u, 32u, 32u, },
+            .idacGainIndex = 2u,
+            .rowIdacMod = { 32u, 32u, 32u, },
+            .bslnCoeff = 1u,
+            .status = 0u,
+            .wdTouch = {
+                .ptrPosition = NULL,
+                .numPosition = 0,
+            },
+        },
+        { /* ProximityW */
+            .fingerCap = 160u,
+            .sigPFC = 0u,
+            .resolution = 14u,
+            .maxRawCount = 0u,
+            #if (CY_CAPSENSE_MW_VERSION >= 300)
+                .maxRawCountRow = 0u,
+            #endif
+            .fingerTh = 100u,
+            .proxTh = 200u,
             .lowBslnRst = 30u,
             .snsClk = 4u,
             .rowSnsClk = 4u,
@@ -519,8 +616,8 @@ cy_stc_capsense_tuner_t cy_capsense_tuner =
             .hysteresis = 10u,
             .onDebounce = 3u,
             .snsClkSource = CY_CAPSENSE_CLK_SOURCE_AUTO_MASK,
-            .idacMod = { 25u, 32u, 32u, },
-            .idacGainIndex = 4u,
+            .idacMod = { 22u, 32u, 32u, },
+            .idacGainIndex = 3u,
             .rowIdacMod = { 32u, 32u, 32u, },
             .bslnCoeff = 1u,
             .status = 0u,
@@ -537,7 +634,16 @@ cy_stc_capsense_tuner_t cy_capsense_tuner =
             .diff = 0u,
             .status = 0u,
             .negBslnRstCnt = 0u,
-            .idacComp = 26u,
+            .idacComp = 30u,
+            .bslnExt = 0u,
+        },
+        { /* ProximityW_Sns0 */
+            .raw = 0u,
+            .bsln = 0u,
+            .diff = 0u,
+            .status = 0u,
+            .negBslnRstCnt = 0u,
+            .idacComp = 23u,
             .bslnExt = 0u,
         },
     },

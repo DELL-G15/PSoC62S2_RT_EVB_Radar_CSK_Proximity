@@ -45,8 +45,10 @@ extern "C" {
 #define CY_CAPSENSE_PERI_DIV_INDEX 0u
 #define Cmod_PORT GPIO_PRT7
 #define Proximity0_Sns0_PORT GPIO_PRT10
+#define ProximityW_Sns0_PORT GPIO_PRT10
 #define Cmod_PIN 7u
 #define Proximity0_Sns0_PIN 5u
+#define ProximityW_Sns0_PIN 4u
 #define Cmod_PORT_NUM 7u
 #define CYBSP_CSD_HW CSD0
 #define CYBSP_CSD_IRQ csd_interrupt_IRQn

@@ -169,26 +169,134 @@
 #define CY_CAPSENSE_TUNER_PROXIMITY0_NUM_POSITIONS_OFFSET                              (84u)
 #define CY_CAPSENSE_TUNER_PROXIMITY0_NUM_POSITIONS_SIZE                                (1u)
 
-#define CY_CAPSENSE_TUNER_PROXIMITY0_SNS0_RAW0_OFFSET                                  (88u)
+#define CY_CAPSENSE_TUNER_PROXIMITYW_FINGER_CP_OFFSET                                  (88u)
+#define CY_CAPSENSE_TUNER_PROXIMITYW_FINGER_CP_SIZE                                    (2u)
+
+#define CY_CAPSENSE_TUNER_PROXIMITYW_SIGPFC_OFFSET                                     (90u)
+#define CY_CAPSENSE_TUNER_PROXIMITYW_SIGPFC_SIZE                                       (2u)
+
+#define CY_CAPSENSE_TUNER_PROXIMITYW_RESOLUTION_OFFSET                                 (92u)
+#define CY_CAPSENSE_TUNER_PROXIMITYW_RESOLUTION_SIZE                                   (2u)
+
+#define CY_CAPSENSE_TUNER_PROXIMITYW_MAX_RAW_COUNT_OFFSET                              (94u)
+#define CY_CAPSENSE_TUNER_PROXIMITYW_MAX_RAW_COUNT_SIZE                                (2u)
+
+#define CY_CAPSENSE_TUNER_PROXIMITYW_FINGER_TH_OFFSET                                  (96u)
+#define CY_CAPSENSE_TUNER_PROXIMITYW_FINGER_TH_SIZE                                    (2u)
+
+#define CY_CAPSENSE_TUNER_PROXIMITYW_PROX_TOUCH_TH_OFFSET                              (98u)
+#define CY_CAPSENSE_TUNER_PROXIMITYW_PROX_TOUCH_TH_SIZE                                (2u)
+
+#define CY_CAPSENSE_TUNER_PROXIMITYW_LOW_BSLN_RST_OFFSET                               (100u)
+#define CY_CAPSENSE_TUNER_PROXIMITYW_LOW_BSLN_RST_SIZE                                 (2u)
+
+#define CY_CAPSENSE_TUNER_PROXIMITYW_SNS_CLK_OFFSET                                    (102u)
+#define CY_CAPSENSE_TUNER_PROXIMITYW_SNS_CLK_SIZE                                      (2u)
+
+#define CY_CAPSENSE_TUNER_PROXIMITYW_ROW_SNS_CLK_OFFSET                                (104u)
+#define CY_CAPSENSE_TUNER_PROXIMITYW_ROW_SNS_CLK_SIZE                                  (2u)
+
+#define CY_CAPSENSE_TUNER_PROXIMITYW_GESTURE_DETECTED_OFFSET                           (106u)
+#define CY_CAPSENSE_TUNER_PROXIMITYW_GESTURE_DETECTED_SIZE                             (2u)
+
+#define CY_CAPSENSE_TUNER_PROXIMITYW_GESTURE_DIRECTION_OFFSET                          (108u)
+#define CY_CAPSENSE_TUNER_PROXIMITYW_GESTURE_DIRECTION_SIZE                            (2u)
+
+#define CY_CAPSENSE_TUNER_PROXIMITYW_XDELTA_OFFSET                                     (110u)
+#define CY_CAPSENSE_TUNER_PROXIMITYW_XDELTA_SIZE                                       (2u)
+
+#define CY_CAPSENSE_TUNER_PROXIMITYW_YDELTA_OFFSET                                     (112u)
+#define CY_CAPSENSE_TUNER_PROXIMITYW_YDELTA_SIZE                                       (2u)
+
+#define CY_CAPSENSE_TUNER_PROXIMITYW_NOISE_TH_OFFSET                                   (114u)
+#define CY_CAPSENSE_TUNER_PROXIMITYW_NOISE_TH_SIZE                                     (1u)
+
+#define CY_CAPSENSE_TUNER_PROXIMITYW_NNOISE_TH_OFFSET                                  (115u)
+#define CY_CAPSENSE_TUNER_PROXIMITYW_NNOISE_TH_SIZE                                    (1u)
+
+#define CY_CAPSENSE_TUNER_PROXIMITYW_HYSTERESIS_OFFSET                                 (116u)
+#define CY_CAPSENSE_TUNER_PROXIMITYW_HYSTERESIS_SIZE                                   (1u)
+
+#define CY_CAPSENSE_TUNER_PROXIMITYW_ON_DEBOUNCE_OFFSET                                (117u)
+#define CY_CAPSENSE_TUNER_PROXIMITYW_ON_DEBOUNCE_SIZE                                  (1u)
+
+#define CY_CAPSENSE_TUNER_PROXIMITYW_SNS_CLK_SOURCE_OFFSET                             (118u)
+#define CY_CAPSENSE_TUNER_PROXIMITYW_SNS_CLK_SOURCE_SIZE                               (1u)
+
+#define CY_CAPSENSE_TUNER_PROXIMITYW_IDAC_MOD0_OFFSET                                  (119u)
+#define CY_CAPSENSE_TUNER_PROXIMITYW_IDAC_MOD0_SIZE                                    (1u)
+
+#define CY_CAPSENSE_TUNER_PROXIMITYW_IDAC_MOD1_OFFSET                                  (120u)
+#define CY_CAPSENSE_TUNER_PROXIMITYW_IDAC_MOD1_SIZE                                    (1u)
+
+#define CY_CAPSENSE_TUNER_PROXIMITYW_IDAC_MOD2_OFFSET                                  (121u)
+#define CY_CAPSENSE_TUNER_PROXIMITYW_IDAC_MOD2_SIZE                                    (1u)
+
+#define CY_CAPSENSE_TUNER_PROXIMITYW_IDAC_GAIN_INDEX_OFFSET                            (122u)
+#define CY_CAPSENSE_TUNER_PROXIMITYW_IDAC_GAIN_INDEX_SIZE                              (1u)
+
+#define CY_CAPSENSE_TUNER_PROXIMITYW_ROW_IDAC_MOD0_OFFSET                              (123u)
+#define CY_CAPSENSE_TUNER_PROXIMITYW_ROW_IDAC_MOD0_SIZE                                (1u)
+
+#define CY_CAPSENSE_TUNER_PROXIMITYW_ROW_IDAC_MOD1_OFFSET                              (124u)
+#define CY_CAPSENSE_TUNER_PROXIMITYW_ROW_IDAC_MOD1_SIZE                                (1u)
+
+#define CY_CAPSENSE_TUNER_PROXIMITYW_ROW_IDAC_MOD2_OFFSET                              (125u)
+#define CY_CAPSENSE_TUNER_PROXIMITYW_ROW_IDAC_MOD2_SIZE                                (1u)
+
+#define CY_CAPSENSE_TUNER_PROXIMITYW_PROX_IIR_BL_N_OFFSET                              (126u)
+#define CY_CAPSENSE_TUNER_PROXIMITYW_PROX_IIR_BL_N_SIZE                                (1u)
+
+#define CY_CAPSENSE_TUNER_PROXIMITYW_STATUS_OFFSET                                     (127u)
+#define CY_CAPSENSE_TUNER_PROXIMITYW_STATUS_SIZE                                       (1u)
+
+#define CY_CAPSENSE_TUNER_PROXIMITYW_PTRPOSITION_OFFSET                                (128u)
+#define CY_CAPSENSE_TUNER_PROXIMITYW_PTRPOSITION_SIZE                                  (4u)
+
+#define CY_CAPSENSE_TUNER_PROXIMITYW_NUM_POSITIONS_OFFSET                              (132u)
+#define CY_CAPSENSE_TUNER_PROXIMITYW_NUM_POSITIONS_SIZE                                (1u)
+
+#define CY_CAPSENSE_TUNER_PROXIMITY0_SNS0_RAW0_OFFSET                                  (136u)
 #define CY_CAPSENSE_TUNER_PROXIMITY0_SNS0_RAW0_SIZE                                    (2u)
 
-#define CY_CAPSENSE_TUNER_PROXIMITY0_SNS0_BSLN0_OFFSET                                 (90u)
+#define CY_CAPSENSE_TUNER_PROXIMITY0_SNS0_BSLN0_OFFSET                                 (138u)
 #define CY_CAPSENSE_TUNER_PROXIMITY0_SNS0_BSLN0_SIZE                                   (2u)
 
-#define CY_CAPSENSE_TUNER_PROXIMITY0_SNS0_DIFF0_OFFSET                                 (92u)
+#define CY_CAPSENSE_TUNER_PROXIMITY0_SNS0_DIFF0_OFFSET                                 (140u)
 #define CY_CAPSENSE_TUNER_PROXIMITY0_SNS0_DIFF0_SIZE                                   (2u)
 
-#define CY_CAPSENSE_TUNER_PROXIMITY0_SNS0_STATUS0_OFFSET                               (94u)
+#define CY_CAPSENSE_TUNER_PROXIMITY0_SNS0_STATUS0_OFFSET                               (142u)
 #define CY_CAPSENSE_TUNER_PROXIMITY0_SNS0_STATUS0_SIZE                                 (1u)
 
-#define CY_CAPSENSE_TUNER_PROXIMITY0_SNS0_NEG_BSLN_RST_CNT0_OFFSET                     (95u)
+#define CY_CAPSENSE_TUNER_PROXIMITY0_SNS0_NEG_BSLN_RST_CNT0_OFFSET                     (143u)
 #define CY_CAPSENSE_TUNER_PROXIMITY0_SNS0_NEG_BSLN_RST_CNT0_SIZE                       (1u)
 
-#define CY_CAPSENSE_TUNER_PROXIMITY0_SNS0_IDAC0_OFFSET                                 (96u)
+#define CY_CAPSENSE_TUNER_PROXIMITY0_SNS0_IDAC0_OFFSET                                 (144u)
 #define CY_CAPSENSE_TUNER_PROXIMITY0_SNS0_IDAC0_SIZE                                   (1u)
 
-#define CY_CAPSENSE_TUNER_PROXIMITY0_SNS0_BSLN_EXT0_OFFSET                             (97u)
+#define CY_CAPSENSE_TUNER_PROXIMITY0_SNS0_BSLN_EXT0_OFFSET                             (145u)
 #define CY_CAPSENSE_TUNER_PROXIMITY0_SNS0_BSLN_EXT0_SIZE                               (1u)
+
+#define CY_CAPSENSE_TUNER_PROXIMITYW_SNS0_RAW0_OFFSET                                  (146u)
+#define CY_CAPSENSE_TUNER_PROXIMITYW_SNS0_RAW0_SIZE                                    (2u)
+
+#define CY_CAPSENSE_TUNER_PROXIMITYW_SNS0_BSLN0_OFFSET                                 (148u)
+#define CY_CAPSENSE_TUNER_PROXIMITYW_SNS0_BSLN0_SIZE                                   (2u)
+
+#define CY_CAPSENSE_TUNER_PROXIMITYW_SNS0_DIFF0_OFFSET                                 (150u)
+#define CY_CAPSENSE_TUNER_PROXIMITYW_SNS0_DIFF0_SIZE                                   (2u)
+
+#define CY_CAPSENSE_TUNER_PROXIMITYW_SNS0_STATUS0_OFFSET                               (152u)
+#define CY_CAPSENSE_TUNER_PROXIMITYW_SNS0_STATUS0_SIZE                                 (1u)
+
+#define CY_CAPSENSE_TUNER_PROXIMITYW_SNS0_NEG_BSLN_RST_CNT0_OFFSET                     (153u)
+#define CY_CAPSENSE_TUNER_PROXIMITYW_SNS0_NEG_BSLN_RST_CNT0_SIZE                       (1u)
+
+#define CY_CAPSENSE_TUNER_PROXIMITYW_SNS0_IDAC0_OFFSET                                 (154u)
+#define CY_CAPSENSE_TUNER_PROXIMITYW_SNS0_IDAC0_SIZE                                   (1u)
+
+#define CY_CAPSENSE_TUNER_PROXIMITYW_SNS0_BSLN_EXT0_OFFSET                             (155u)
+#define CY_CAPSENSE_TUNER_PROXIMITYW_SNS0_BSLN_EXT0_SIZE                               (1u)
 
 #else /* CY_CAPSENSE_TUNER_MW_VERSION >= 300 */
 #define CY_CAPSENSE_TUNER_CONFIG_ID_OFFSET                                             (0u)
@@ -314,26 +422,137 @@
 #define CY_CAPSENSE_TUNER_PROXIMITY0_NUM_POSITIONS_OFFSET                              (76u)
 #define CY_CAPSENSE_TUNER_PROXIMITY0_NUM_POSITIONS_SIZE                                (1u)
 
-#define CY_CAPSENSE_TUNER_PROXIMITY0_SNS0_RAW0_OFFSET                                  (80u)
+#define CY_CAPSENSE_TUNER_PROXIMITYW_FINGER_CP_OFFSET                                  (80u)
+#define CY_CAPSENSE_TUNER_PROXIMITYW_FINGER_CP_SIZE                                    (2u)
+
+#define CY_CAPSENSE_TUNER_PROXIMITYW_SIGPFC_OFFSET                                     (82u)
+#define CY_CAPSENSE_TUNER_PROXIMITYW_SIGPFC_SIZE                                       (2u)
+
+#define CY_CAPSENSE_TUNER_PROXIMITYW_RESOLUTION_OFFSET                                 (84u)
+#define CY_CAPSENSE_TUNER_PROXIMITYW_RESOLUTION_SIZE                                   (2u)
+
+#define CY_CAPSENSE_TUNER_PROXIMITYW_MAX_RAW_COUNT_OFFSET                              (86u)
+#define CY_CAPSENSE_TUNER_PROXIMITYW_MAX_RAW_COUNT_SIZE                                (2u)
+
+#define CY_CAPSENSE_TUNER_PROXIMITYW_ROW_MAX_RAW_COUNT_OFFSET                          (88u)
+#define CY_CAPSENSE_TUNER_PROXIMITYW_ROW_MAX_RAW_COUNT_SIZE                            (2u)
+
+#define CY_CAPSENSE_TUNER_PROXIMITYW_FINGER_TH_OFFSET                                  (90u)
+#define CY_CAPSENSE_TUNER_PROXIMITYW_FINGER_TH_SIZE                                    (2u)
+
+#define CY_CAPSENSE_TUNER_PROXIMITYW_PROX_TOUCH_TH_OFFSET                              (92u)
+#define CY_CAPSENSE_TUNER_PROXIMITYW_PROX_TOUCH_TH_SIZE                                (2u)
+
+#define CY_CAPSENSE_TUNER_PROXIMITYW_LOW_BSLN_RST_OFFSET                               (94u)
+#define CY_CAPSENSE_TUNER_PROXIMITYW_LOW_BSLN_RST_SIZE                                 (2u)
+
+#define CY_CAPSENSE_TUNER_PROXIMITYW_SNS_CLK_OFFSET                                    (96u)
+#define CY_CAPSENSE_TUNER_PROXIMITYW_SNS_CLK_SIZE                                      (2u)
+
+#define CY_CAPSENSE_TUNER_PROXIMITYW_ROW_SNS_CLK_OFFSET                                (98u)
+#define CY_CAPSENSE_TUNER_PROXIMITYW_ROW_SNS_CLK_SIZE                                  (2u)
+
+#define CY_CAPSENSE_TUNER_PROXIMITYW_GESTURE_DETECTED_OFFSET                           (100u)
+#define CY_CAPSENSE_TUNER_PROXIMITYW_GESTURE_DETECTED_SIZE                             (2u)
+
+#define CY_CAPSENSE_TUNER_PROXIMITYW_GESTURE_DIRECTION_OFFSET                          (102u)
+#define CY_CAPSENSE_TUNER_PROXIMITYW_GESTURE_DIRECTION_SIZE                            (2u)
+
+#define CY_CAPSENSE_TUNER_PROXIMITYW_XDELTA_OFFSET                                     (104u)
+#define CY_CAPSENSE_TUNER_PROXIMITYW_XDELTA_SIZE                                       (2u)
+
+#define CY_CAPSENSE_TUNER_PROXIMITYW_YDELTA_OFFSET                                     (106u)
+#define CY_CAPSENSE_TUNER_PROXIMITYW_YDELTA_SIZE                                       (2u)
+
+#define CY_CAPSENSE_TUNER_PROXIMITYW_NOISE_TH_OFFSET                                   (108u)
+#define CY_CAPSENSE_TUNER_PROXIMITYW_NOISE_TH_SIZE                                     (2u)
+
+#define CY_CAPSENSE_TUNER_PROXIMITYW_NNOISE_TH_OFFSET                                  (110u)
+#define CY_CAPSENSE_TUNER_PROXIMITYW_NNOISE_TH_SIZE                                    (2u)
+
+#define CY_CAPSENSE_TUNER_PROXIMITYW_HYSTERESIS_OFFSET                                 (112u)
+#define CY_CAPSENSE_TUNER_PROXIMITYW_HYSTERESIS_SIZE                                   (2u)
+
+#define CY_CAPSENSE_TUNER_PROXIMITYW_ON_DEBOUNCE_OFFSET                                (114u)
+#define CY_CAPSENSE_TUNER_PROXIMITYW_ON_DEBOUNCE_SIZE                                  (1u)
+
+#define CY_CAPSENSE_TUNER_PROXIMITYW_SNS_CLK_SOURCE_OFFSET                             (115u)
+#define CY_CAPSENSE_TUNER_PROXIMITYW_SNS_CLK_SOURCE_SIZE                               (1u)
+
+#define CY_CAPSENSE_TUNER_PROXIMITYW_IDAC_MOD0_OFFSET                                  (116u)
+#define CY_CAPSENSE_TUNER_PROXIMITYW_IDAC_MOD0_SIZE                                    (1u)
+
+#define CY_CAPSENSE_TUNER_PROXIMITYW_IDAC_MOD1_OFFSET                                  (117u)
+#define CY_CAPSENSE_TUNER_PROXIMITYW_IDAC_MOD1_SIZE                                    (1u)
+
+#define CY_CAPSENSE_TUNER_PROXIMITYW_IDAC_MOD2_OFFSET                                  (118u)
+#define CY_CAPSENSE_TUNER_PROXIMITYW_IDAC_MOD2_SIZE                                    (1u)
+
+#define CY_CAPSENSE_TUNER_PROXIMITYW_IDAC_GAIN_INDEX_OFFSET                            (119u)
+#define CY_CAPSENSE_TUNER_PROXIMITYW_IDAC_GAIN_INDEX_SIZE                              (1u)
+
+#define CY_CAPSENSE_TUNER_PROXIMITYW_ROW_IDAC_MOD0_OFFSET                              (120u)
+#define CY_CAPSENSE_TUNER_PROXIMITYW_ROW_IDAC_MOD0_SIZE                                (1u)
+
+#define CY_CAPSENSE_TUNER_PROXIMITYW_ROW_IDAC_MOD1_OFFSET                              (121u)
+#define CY_CAPSENSE_TUNER_PROXIMITYW_ROW_IDAC_MOD1_SIZE                                (1u)
+
+#define CY_CAPSENSE_TUNER_PROXIMITYW_ROW_IDAC_MOD2_OFFSET                              (122u)
+#define CY_CAPSENSE_TUNER_PROXIMITYW_ROW_IDAC_MOD2_SIZE                                (1u)
+
+#define CY_CAPSENSE_TUNER_PROXIMITYW_PROX_IIR_BL_N_OFFSET                              (123u)
+#define CY_CAPSENSE_TUNER_PROXIMITYW_PROX_IIR_BL_N_SIZE                                (1u)
+
+#define CY_CAPSENSE_TUNER_PROXIMITYW_STATUS_OFFSET                                     (124u)
+#define CY_CAPSENSE_TUNER_PROXIMITYW_STATUS_SIZE                                       (1u)
+
+#define CY_CAPSENSE_TUNER_PROXIMITYW_PTRPOSITION_OFFSET                                (128u)
+#define CY_CAPSENSE_TUNER_PROXIMITYW_PTRPOSITION_SIZE                                  (4u)
+
+#define CY_CAPSENSE_TUNER_PROXIMITYW_NUM_POSITIONS_OFFSET                              (132u)
+#define CY_CAPSENSE_TUNER_PROXIMITYW_NUM_POSITIONS_SIZE                                (1u)
+
+#define CY_CAPSENSE_TUNER_PROXIMITY0_SNS0_RAW0_OFFSET                                  (136u)
 #define CY_CAPSENSE_TUNER_PROXIMITY0_SNS0_RAW0_SIZE                                    (2u)
 
-#define CY_CAPSENSE_TUNER_PROXIMITY0_SNS0_BSLN0_OFFSET                                 (82u)
+#define CY_CAPSENSE_TUNER_PROXIMITY0_SNS0_BSLN0_OFFSET                                 (138u)
 #define CY_CAPSENSE_TUNER_PROXIMITY0_SNS0_BSLN0_SIZE                                   (2u)
 
-#define CY_CAPSENSE_TUNER_PROXIMITY0_SNS0_DIFF0_OFFSET                                 (84u)
+#define CY_CAPSENSE_TUNER_PROXIMITY0_SNS0_DIFF0_OFFSET                                 (140u)
 #define CY_CAPSENSE_TUNER_PROXIMITY0_SNS0_DIFF0_SIZE                                   (2u)
 
-#define CY_CAPSENSE_TUNER_PROXIMITY0_SNS0_STATUS0_OFFSET                               (86u)
+#define CY_CAPSENSE_TUNER_PROXIMITY0_SNS0_STATUS0_OFFSET                               (142u)
 #define CY_CAPSENSE_TUNER_PROXIMITY0_SNS0_STATUS0_SIZE                                 (1u)
 
-#define CY_CAPSENSE_TUNER_PROXIMITY0_SNS0_NEG_BSLN_RST_CNT0_OFFSET                     (87u)
+#define CY_CAPSENSE_TUNER_PROXIMITY0_SNS0_NEG_BSLN_RST_CNT0_OFFSET                     (143u)
 #define CY_CAPSENSE_TUNER_PROXIMITY0_SNS0_NEG_BSLN_RST_CNT0_SIZE                       (1u)
 
-#define CY_CAPSENSE_TUNER_PROXIMITY0_SNS0_IDAC0_OFFSET                                 (88u)
+#define CY_CAPSENSE_TUNER_PROXIMITY0_SNS0_IDAC0_OFFSET                                 (144u)
 #define CY_CAPSENSE_TUNER_PROXIMITY0_SNS0_IDAC0_SIZE                                   (1u)
 
-#define CY_CAPSENSE_TUNER_PROXIMITY0_SNS0_BSLN_EXT0_OFFSET                             (89u)
+#define CY_CAPSENSE_TUNER_PROXIMITY0_SNS0_BSLN_EXT0_OFFSET                             (145u)
 #define CY_CAPSENSE_TUNER_PROXIMITY0_SNS0_BSLN_EXT0_SIZE                               (1u)
+
+#define CY_CAPSENSE_TUNER_PROXIMITYW_SNS0_RAW0_OFFSET                                  (146u)
+#define CY_CAPSENSE_TUNER_PROXIMITYW_SNS0_RAW0_SIZE                                    (2u)
+
+#define CY_CAPSENSE_TUNER_PROXIMITYW_SNS0_BSLN0_OFFSET                                 (148u)
+#define CY_CAPSENSE_TUNER_PROXIMITYW_SNS0_BSLN0_SIZE                                   (2u)
+
+#define CY_CAPSENSE_TUNER_PROXIMITYW_SNS0_DIFF0_OFFSET                                 (150u)
+#define CY_CAPSENSE_TUNER_PROXIMITYW_SNS0_DIFF0_SIZE                                   (2u)
+
+#define CY_CAPSENSE_TUNER_PROXIMITYW_SNS0_STATUS0_OFFSET                               (152u)
+#define CY_CAPSENSE_TUNER_PROXIMITYW_SNS0_STATUS0_SIZE                                 (1u)
+
+#define CY_CAPSENSE_TUNER_PROXIMITYW_SNS0_NEG_BSLN_RST_CNT0_OFFSET                     (153u)
+#define CY_CAPSENSE_TUNER_PROXIMITYW_SNS0_NEG_BSLN_RST_CNT0_SIZE                       (1u)
+
+#define CY_CAPSENSE_TUNER_PROXIMITYW_SNS0_IDAC0_OFFSET                                 (154u)
+#define CY_CAPSENSE_TUNER_PROXIMITYW_SNS0_IDAC0_SIZE                                   (1u)
+
+#define CY_CAPSENSE_TUNER_PROXIMITYW_SNS0_BSLN_EXT0_OFFSET                             (155u)
+#define CY_CAPSENSE_TUNER_PROXIMITYW_SNS0_BSLN_EXT0_SIZE                               (1u)
 
 #endif
 

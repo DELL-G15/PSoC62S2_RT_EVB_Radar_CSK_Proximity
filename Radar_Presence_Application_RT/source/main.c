@@ -125,6 +125,7 @@ int main(void)
     /* presence detection, registers callback to handle presence detection */
     /* events and continuously processes data acquired from radar.         */
 
+
     cy_thread_t ifxradar_task;
     result = cy_rtos_create_thread(&ifxradar_task,
                                    radar_task,
@@ -133,6 +134,7 @@ int main(void)
                                    RADAR_TASK_STACK_SIZE,
                                    RADAR_TASK_PRIORITY,
                                    (cy_thread_arg_t)NULL);
+
 
 
     cy_thread_t ifxcapsense_task;

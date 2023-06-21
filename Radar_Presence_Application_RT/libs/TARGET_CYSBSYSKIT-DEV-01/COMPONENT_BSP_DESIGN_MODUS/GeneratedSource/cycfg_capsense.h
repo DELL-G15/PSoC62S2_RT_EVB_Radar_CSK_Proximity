@@ -52,6 +52,10 @@
 #error Proximity0_Sns0 Sensor is not assigned: missing #define Proximity0_Sns0_PORT, #define Proximity0_Sns0_PIN
 #endif
 
+#if !defined(ProximityW_Sns0_PORT) || !defined(ProximityW_Sns0_PIN)
+#error ProximityW_Sns0 Sensor is not assigned: missing #define ProximityW_Sns0_PORT, #define ProximityW_Sns0_PIN
+#endif
+
 #if !defined(CY_CAPSENSE_CPU_CLK)
 #error CPU clock frequency is not set: missing #define CY_CAPSENSE_CPU_CLK
 #endif
@@ -102,15 +106,19 @@ extern "C" {
 
 /* Widget names */
 #define CY_CAPSENSE_PROXIMITY0_WDGT_ID                                           (0u)
+#define CY_CAPSENSE_PROXIMITYW_WDGT_ID                                           (1u)
 
 /* Proximity0 sensor names */
 #define CY_CAPSENSE_PROXIMITY0_SNS0_ID                                           (0u)
 
+/* ProximityW sensor names */
+#define CY_CAPSENSE_PROXIMITYW_SNS0_ID                                           (0u)
+
 
 typedef struct {
     cy_stc_capsense_common_context_t commonContext;
-    cy_stc_capsense_widget_context_t widgetContext[1];
-    cy_stc_capsense_sensor_context_t sensorContext[1];
+    cy_stc_capsense_widget_context_t widgetContext[2];
+    cy_stc_capsense_sensor_context_t sensorContext[2];
 } cy_stc_capsense_tuner_t;
 
 extern cy_stc_capsense_tuner_t cy_capsense_tuner;
@@ -339,40 +347,220 @@ extern cy_stc_capsense_context_t cy_capsense_context;
 #define CY_CAPSENSE_PROXIMITY0_NUM_POSITIONS_SIZE                                (1u)
 #define CY_CAPSENSE_PROXIMITY0_NUM_POSITIONS_PARAM_ID                            (0x01000054u)
 
+#define CY_CAPSENSE_PROXIMITYW_FINGER_CP_VALUE                                   (cy_capsense_tuner.widgetContext[1].fingerCap)
+#define CY_CAPSENSE_PROXIMITYW_FINGER_CP_OFFSET                                  (88u)
+#define CY_CAPSENSE_PROXIMITYW_FINGER_CP_SIZE                                    (2u)
+#define CY_CAPSENSE_PROXIMITYW_FINGER_CP_PARAM_ID                                (0x06010058u)
+
+#define CY_CAPSENSE_PROXIMITYW_SIGPFC_VALUE                                      (cy_capsense_tuner.widgetContext[1].sigPFC)
+#define CY_CAPSENSE_PROXIMITYW_SIGPFC_OFFSET                                     (90u)
+#define CY_CAPSENSE_PROXIMITYW_SIGPFC_SIZE                                       (2u)
+#define CY_CAPSENSE_PROXIMITYW_SIGPFC_PARAM_ID                                   (0x0601005au)
+
+#define CY_CAPSENSE_PROXIMITYW_RESOLUTION_VALUE                                  (cy_capsense_tuner.widgetContext[1].resolution)
+#define CY_CAPSENSE_PROXIMITYW_RESOLUTION_OFFSET                                 (92u)
+#define CY_CAPSENSE_PROXIMITYW_RESOLUTION_SIZE                                   (2u)
+#define CY_CAPSENSE_PROXIMITYW_RESOLUTION_PARAM_ID                               (0x0601005cu)
+
+#define CY_CAPSENSE_PROXIMITYW_MAX_RAW_COUNT_VALUE                               (cy_capsense_tuner.widgetContext[1].maxRawCount)
+#define CY_CAPSENSE_PROXIMITYW_MAX_RAW_COUNT_OFFSET                              (94u)
+#define CY_CAPSENSE_PROXIMITYW_MAX_RAW_COUNT_SIZE                                (2u)
+#define CY_CAPSENSE_PROXIMITYW_MAX_RAW_COUNT_PARAM_ID                            (0x0201005eu)
+
+#define CY_CAPSENSE_PROXIMITYW_FINGER_TH_VALUE                                   (cy_capsense_tuner.widgetContext[1].fingerTh)
+#define CY_CAPSENSE_PROXIMITYW_FINGER_TH_OFFSET                                  (96u)
+#define CY_CAPSENSE_PROXIMITYW_FINGER_TH_SIZE                                    (2u)
+#define CY_CAPSENSE_PROXIMITYW_FINGER_TH_PARAM_ID                                (0x06010060u)
+
+#define CY_CAPSENSE_PROXIMITYW_PROX_TOUCH_TH_VALUE                               (cy_capsense_tuner.widgetContext[1].proxTh)
+#define CY_CAPSENSE_PROXIMITYW_PROX_TOUCH_TH_OFFSET                              (98u)
+#define CY_CAPSENSE_PROXIMITYW_PROX_TOUCH_TH_SIZE                                (2u)
+#define CY_CAPSENSE_PROXIMITYW_PROX_TOUCH_TH_PARAM_ID                            (0x06010062u)
+
+#define CY_CAPSENSE_PROXIMITYW_LOW_BSLN_RST_VALUE                                (cy_capsense_tuner.widgetContext[1].lowBslnRst)
+#define CY_CAPSENSE_PROXIMITYW_LOW_BSLN_RST_OFFSET                               (100u)
+#define CY_CAPSENSE_PROXIMITYW_LOW_BSLN_RST_SIZE                                 (2u)
+#define CY_CAPSENSE_PROXIMITYW_LOW_BSLN_RST_PARAM_ID                             (0x06010064u)
+
+#define CY_CAPSENSE_PROXIMITYW_SNS_CLK_VALUE                                     (cy_capsense_tuner.widgetContext[1].snsClk)
+#define CY_CAPSENSE_PROXIMITYW_SNS_CLK_OFFSET                                    (102u)
+#define CY_CAPSENSE_PROXIMITYW_SNS_CLK_SIZE                                      (2u)
+#define CY_CAPSENSE_PROXIMITYW_SNS_CLK_PARAM_ID                                  (0x06010066u)
+
+#define CY_CAPSENSE_PROXIMITYW_ROW_SNS_CLK_VALUE                                 (cy_capsense_tuner.widgetContext[1].rowSnsClk)
+#define CY_CAPSENSE_PROXIMITYW_ROW_SNS_CLK_OFFSET                                (104u)
+#define CY_CAPSENSE_PROXIMITYW_ROW_SNS_CLK_SIZE                                  (2u)
+#define CY_CAPSENSE_PROXIMITYW_ROW_SNS_CLK_PARAM_ID                              (0x06010068u)
+
+#define CY_CAPSENSE_PROXIMITYW_GESTURE_DETECTED_VALUE                            (cy_capsense_tuner.widgetContext[1].gestureDetected)
+#define CY_CAPSENSE_PROXIMITYW_GESTURE_DETECTED_OFFSET                           (106u)
+#define CY_CAPSENSE_PROXIMITYW_GESTURE_DETECTED_SIZE                             (2u)
+#define CY_CAPSENSE_PROXIMITYW_GESTURE_DETECTED_PARAM_ID                         (0x0201006au)
+
+#define CY_CAPSENSE_PROXIMITYW_GESTURE_DIRECTION_VALUE                           (cy_capsense_tuner.widgetContext[1].gestureDirection)
+#define CY_CAPSENSE_PROXIMITYW_GESTURE_DIRECTION_OFFSET                          (108u)
+#define CY_CAPSENSE_PROXIMITYW_GESTURE_DIRECTION_SIZE                            (2u)
+#define CY_CAPSENSE_PROXIMITYW_GESTURE_DIRECTION_PARAM_ID                        (0x0201006cu)
+
+#define CY_CAPSENSE_PROXIMITYW_XDELTA_VALUE                                      (cy_capsense_tuner.widgetContext[1].xDelta)
+#define CY_CAPSENSE_PROXIMITYW_XDELTA_OFFSET                                     (110u)
+#define CY_CAPSENSE_PROXIMITYW_XDELTA_SIZE                                       (2u)
+#define CY_CAPSENSE_PROXIMITYW_XDELTA_PARAM_ID                                   (0x0201006eu)
+
+#define CY_CAPSENSE_PROXIMITYW_YDELTA_VALUE                                      (cy_capsense_tuner.widgetContext[1].yDelta)
+#define CY_CAPSENSE_PROXIMITYW_YDELTA_OFFSET                                     (112u)
+#define CY_CAPSENSE_PROXIMITYW_YDELTA_SIZE                                       (2u)
+#define CY_CAPSENSE_PROXIMITYW_YDELTA_PARAM_ID                                   (0x02010070u)
+
+#define CY_CAPSENSE_PROXIMITYW_NOISE_TH_VALUE                                    (cy_capsense_tuner.widgetContext[1].noiseTh)
+#define CY_CAPSENSE_PROXIMITYW_NOISE_TH_OFFSET                                   (114u)
+#define CY_CAPSENSE_PROXIMITYW_NOISE_TH_SIZE                                     (1u)
+#define CY_CAPSENSE_PROXIMITYW_NOISE_TH_PARAM_ID                                 (0x05010072u)
+
+#define CY_CAPSENSE_PROXIMITYW_NNOISE_TH_VALUE                                   (cy_capsense_tuner.widgetContext[1].nNoiseTh)
+#define CY_CAPSENSE_PROXIMITYW_NNOISE_TH_OFFSET                                  (115u)
+#define CY_CAPSENSE_PROXIMITYW_NNOISE_TH_SIZE                                    (1u)
+#define CY_CAPSENSE_PROXIMITYW_NNOISE_TH_PARAM_ID                                (0x05010073u)
+
+#define CY_CAPSENSE_PROXIMITYW_HYSTERESIS_VALUE                                  (cy_capsense_tuner.widgetContext[1].hysteresis)
+#define CY_CAPSENSE_PROXIMITYW_HYSTERESIS_OFFSET                                 (116u)
+#define CY_CAPSENSE_PROXIMITYW_HYSTERESIS_SIZE                                   (1u)
+#define CY_CAPSENSE_PROXIMITYW_HYSTERESIS_PARAM_ID                               (0x05010074u)
+
+#define CY_CAPSENSE_PROXIMITYW_ON_DEBOUNCE_VALUE                                 (cy_capsense_tuner.widgetContext[1].onDebounce)
+#define CY_CAPSENSE_PROXIMITYW_ON_DEBOUNCE_OFFSET                                (117u)
+#define CY_CAPSENSE_PROXIMITYW_ON_DEBOUNCE_SIZE                                  (1u)
+#define CY_CAPSENSE_PROXIMITYW_ON_DEBOUNCE_PARAM_ID                              (0x05010075u)
+
+#define CY_CAPSENSE_PROXIMITYW_SNS_CLK_SOURCE_VALUE                              (cy_capsense_tuner.widgetContext[1].snsClkSource)
+#define CY_CAPSENSE_PROXIMITYW_SNS_CLK_SOURCE_OFFSET                             (118u)
+#define CY_CAPSENSE_PROXIMITYW_SNS_CLK_SOURCE_SIZE                               (1u)
+#define CY_CAPSENSE_PROXIMITYW_SNS_CLK_SOURCE_PARAM_ID                           (0x05010076u)
+
+#define CY_CAPSENSE_PROXIMITYW_IDAC_MOD0_VALUE                                   (cy_capsense_tuner.widgetContext[1].idacMod[0])
+#define CY_CAPSENSE_PROXIMITYW_IDAC_MOD0_OFFSET                                  (119u)
+#define CY_CAPSENSE_PROXIMITYW_IDAC_MOD0_SIZE                                    (1u)
+#define CY_CAPSENSE_PROXIMITYW_IDAC_MOD0_PARAM_ID                                (0x05010077u)
+
+#define CY_CAPSENSE_PROXIMITYW_IDAC_MOD1_VALUE                                   (cy_capsense_tuner.widgetContext[1].idacMod[1])
+#define CY_CAPSENSE_PROXIMITYW_IDAC_MOD1_OFFSET                                  (120u)
+#define CY_CAPSENSE_PROXIMITYW_IDAC_MOD1_SIZE                                    (1u)
+#define CY_CAPSENSE_PROXIMITYW_IDAC_MOD1_PARAM_ID                                (0x05010078u)
+
+#define CY_CAPSENSE_PROXIMITYW_IDAC_MOD2_VALUE                                   (cy_capsense_tuner.widgetContext[1].idacMod[2])
+#define CY_CAPSENSE_PROXIMITYW_IDAC_MOD2_OFFSET                                  (121u)
+#define CY_CAPSENSE_PROXIMITYW_IDAC_MOD2_SIZE                                    (1u)
+#define CY_CAPSENSE_PROXIMITYW_IDAC_MOD2_PARAM_ID                                (0x05010079u)
+
+#define CY_CAPSENSE_PROXIMITYW_IDAC_GAIN_INDEX_VALUE                             (cy_capsense_tuner.widgetContext[1].idacGainIndex)
+#define CY_CAPSENSE_PROXIMITYW_IDAC_GAIN_INDEX_OFFSET                            (122u)
+#define CY_CAPSENSE_PROXIMITYW_IDAC_GAIN_INDEX_SIZE                              (1u)
+#define CY_CAPSENSE_PROXIMITYW_IDAC_GAIN_INDEX_PARAM_ID                          (0x0501007au)
+
+#define CY_CAPSENSE_PROXIMITYW_ROW_IDAC_MOD0_VALUE                               (cy_capsense_tuner.widgetContext[1].rowIdacMod[0])
+#define CY_CAPSENSE_PROXIMITYW_ROW_IDAC_MOD0_OFFSET                              (123u)
+#define CY_CAPSENSE_PROXIMITYW_ROW_IDAC_MOD0_SIZE                                (1u)
+#define CY_CAPSENSE_PROXIMITYW_ROW_IDAC_MOD0_PARAM_ID                            (0x0501007bu)
+
+#define CY_CAPSENSE_PROXIMITYW_ROW_IDAC_MOD1_VALUE                               (cy_capsense_tuner.widgetContext[1].rowIdacMod[1])
+#define CY_CAPSENSE_PROXIMITYW_ROW_IDAC_MOD1_OFFSET                              (124u)
+#define CY_CAPSENSE_PROXIMITYW_ROW_IDAC_MOD1_SIZE                                (1u)
+#define CY_CAPSENSE_PROXIMITYW_ROW_IDAC_MOD1_PARAM_ID                            (0x0501007cu)
+
+#define CY_CAPSENSE_PROXIMITYW_ROW_IDAC_MOD2_VALUE                               (cy_capsense_tuner.widgetContext[1].rowIdacMod[2])
+#define CY_CAPSENSE_PROXIMITYW_ROW_IDAC_MOD2_OFFSET                              (125u)
+#define CY_CAPSENSE_PROXIMITYW_ROW_IDAC_MOD2_SIZE                                (1u)
+#define CY_CAPSENSE_PROXIMITYW_ROW_IDAC_MOD2_PARAM_ID                            (0x0501007du)
+
+#define CY_CAPSENSE_PROXIMITYW_PROX_IIR_BL_N_VALUE                               (cy_capsense_tuner.widgetContext[1].bslnCoeff)
+#define CY_CAPSENSE_PROXIMITYW_PROX_IIR_BL_N_OFFSET                              (126u)
+#define CY_CAPSENSE_PROXIMITYW_PROX_IIR_BL_N_SIZE                                (1u)
+#define CY_CAPSENSE_PROXIMITYW_PROX_IIR_BL_N_PARAM_ID                            (0x0101007eu)
+
+#define CY_CAPSENSE_PROXIMITYW_STATUS_VALUE                                      (cy_capsense_tuner.widgetContext[1].status)
+#define CY_CAPSENSE_PROXIMITYW_STATUS_OFFSET                                     (127u)
+#define CY_CAPSENSE_PROXIMITYW_STATUS_SIZE                                       (1u)
+#define CY_CAPSENSE_PROXIMITYW_STATUS_PARAM_ID                                   (0x0101007fu)
+
+#define CY_CAPSENSE_PROXIMITYW_PTRPOSITION_VALUE                                 (cy_capsense_tuner.widgetContext[1].wdTouch.ptrPosition)
+#define CY_CAPSENSE_PROXIMITYW_PTRPOSITION_OFFSET                                (128u)
+#define CY_CAPSENSE_PROXIMITYW_PTRPOSITION_SIZE                                  (4u)
+#define CY_CAPSENSE_PROXIMITYW_PTRPOSITION_PARAM_ID                              (0x03010080u)
+
+#define CY_CAPSENSE_PROXIMITYW_NUM_POSITIONS_VALUE                               (cy_capsense_tuner.widgetContext[1].wdTouch.numPosition)
+#define CY_CAPSENSE_PROXIMITYW_NUM_POSITIONS_OFFSET                              (132u)
+#define CY_CAPSENSE_PROXIMITYW_NUM_POSITIONS_SIZE                                (1u)
+#define CY_CAPSENSE_PROXIMITYW_NUM_POSITIONS_PARAM_ID                            (0x01010084u)
+
 #define CY_CAPSENSE_PROXIMITY0_SNS0_RAW0_VALUE                                   (cy_capsense_tuner.sensorContext[0].raw)
-#define CY_CAPSENSE_PROXIMITY0_SNS0_RAW0_OFFSET                                  (88u)
+#define CY_CAPSENSE_PROXIMITY0_SNS0_RAW0_OFFSET                                  (136u)
 #define CY_CAPSENSE_PROXIMITY0_SNS0_RAW0_SIZE                                    (2u)
-#define CY_CAPSENSE_PROXIMITY0_SNS0_RAW0_PARAM_ID                                (0x02000058u)
+#define CY_CAPSENSE_PROXIMITY0_SNS0_RAW0_PARAM_ID                                (0x02000088u)
 
 #define CY_CAPSENSE_PROXIMITY0_SNS0_BSLN0_VALUE                                  (cy_capsense_tuner.sensorContext[0].bsln)
-#define CY_CAPSENSE_PROXIMITY0_SNS0_BSLN0_OFFSET                                 (90u)
+#define CY_CAPSENSE_PROXIMITY0_SNS0_BSLN0_OFFSET                                 (138u)
 #define CY_CAPSENSE_PROXIMITY0_SNS0_BSLN0_SIZE                                   (2u)
-#define CY_CAPSENSE_PROXIMITY0_SNS0_BSLN0_PARAM_ID                               (0x0200005au)
+#define CY_CAPSENSE_PROXIMITY0_SNS0_BSLN0_PARAM_ID                               (0x0200008au)
 
 #define CY_CAPSENSE_PROXIMITY0_SNS0_DIFF0_VALUE                                  (cy_capsense_tuner.sensorContext[0].diff)
-#define CY_CAPSENSE_PROXIMITY0_SNS0_DIFF0_OFFSET                                 (92u)
+#define CY_CAPSENSE_PROXIMITY0_SNS0_DIFF0_OFFSET                                 (140u)
 #define CY_CAPSENSE_PROXIMITY0_SNS0_DIFF0_SIZE                                   (2u)
-#define CY_CAPSENSE_PROXIMITY0_SNS0_DIFF0_PARAM_ID                               (0x0200005cu)
+#define CY_CAPSENSE_PROXIMITY0_SNS0_DIFF0_PARAM_ID                               (0x0200008cu)
 
 #define CY_CAPSENSE_PROXIMITY0_SNS0_STATUS0_VALUE                                (cy_capsense_tuner.sensorContext[0].status)
-#define CY_CAPSENSE_PROXIMITY0_SNS0_STATUS0_OFFSET                               (94u)
+#define CY_CAPSENSE_PROXIMITY0_SNS0_STATUS0_OFFSET                               (142u)
 #define CY_CAPSENSE_PROXIMITY0_SNS0_STATUS0_SIZE                                 (1u)
-#define CY_CAPSENSE_PROXIMITY0_SNS0_STATUS0_PARAM_ID                             (0x0100005eu)
+#define CY_CAPSENSE_PROXIMITY0_SNS0_STATUS0_PARAM_ID                             (0x0100008eu)
 
 #define CY_CAPSENSE_PROXIMITY0_SNS0_NEG_BSLN_RST_CNT0_VALUE                      (cy_capsense_tuner.sensorContext[0].negBslnRstCnt)
-#define CY_CAPSENSE_PROXIMITY0_SNS0_NEG_BSLN_RST_CNT0_OFFSET                     (95u)
+#define CY_CAPSENSE_PROXIMITY0_SNS0_NEG_BSLN_RST_CNT0_OFFSET                     (143u)
 #define CY_CAPSENSE_PROXIMITY0_SNS0_NEG_BSLN_RST_CNT0_SIZE                       (1u)
-#define CY_CAPSENSE_PROXIMITY0_SNS0_NEG_BSLN_RST_CNT0_PARAM_ID                   (0x0100005fu)
+#define CY_CAPSENSE_PROXIMITY0_SNS0_NEG_BSLN_RST_CNT0_PARAM_ID                   (0x0100008fu)
 
 #define CY_CAPSENSE_PROXIMITY0_SNS0_IDAC0_VALUE                                  (cy_capsense_tuner.sensorContext[0].idacComp)
-#define CY_CAPSENSE_PROXIMITY0_SNS0_IDAC0_OFFSET                                 (96u)
+#define CY_CAPSENSE_PROXIMITY0_SNS0_IDAC0_OFFSET                                 (144u)
 #define CY_CAPSENSE_PROXIMITY0_SNS0_IDAC0_SIZE                                   (1u)
-#define CY_CAPSENSE_PROXIMITY0_SNS0_IDAC0_PARAM_ID                               (0x01000060u)
+#define CY_CAPSENSE_PROXIMITY0_SNS0_IDAC0_PARAM_ID                               (0x01000090u)
 
 #define CY_CAPSENSE_PROXIMITY0_SNS0_BSLN_EXT0_VALUE                              (cy_capsense_tuner.sensorContext[0].bslnExt)
-#define CY_CAPSENSE_PROXIMITY0_SNS0_BSLN_EXT0_OFFSET                             (97u)
+#define CY_CAPSENSE_PROXIMITY0_SNS0_BSLN_EXT0_OFFSET                             (145u)
 #define CY_CAPSENSE_PROXIMITY0_SNS0_BSLN_EXT0_SIZE                               (1u)
-#define CY_CAPSENSE_PROXIMITY0_SNS0_BSLN_EXT0_PARAM_ID                           (0x01000061u)
+#define CY_CAPSENSE_PROXIMITY0_SNS0_BSLN_EXT0_PARAM_ID                           (0x01000091u)
+
+#define CY_CAPSENSE_PROXIMITYW_SNS0_RAW0_VALUE                                   (cy_capsense_tuner.sensorContext[1].raw)
+#define CY_CAPSENSE_PROXIMITYW_SNS0_RAW0_OFFSET                                  (146u)
+#define CY_CAPSENSE_PROXIMITYW_SNS0_RAW0_SIZE                                    (2u)
+#define CY_CAPSENSE_PROXIMITYW_SNS0_RAW0_PARAM_ID                                (0x02010092u)
+
+#define CY_CAPSENSE_PROXIMITYW_SNS0_BSLN0_VALUE                                  (cy_capsense_tuner.sensorContext[1].bsln)
+#define CY_CAPSENSE_PROXIMITYW_SNS0_BSLN0_OFFSET                                 (148u)
+#define CY_CAPSENSE_PROXIMITYW_SNS0_BSLN0_SIZE                                   (2u)
+#define CY_CAPSENSE_PROXIMITYW_SNS0_BSLN0_PARAM_ID                               (0x02010094u)
+
+#define CY_CAPSENSE_PROXIMITYW_SNS0_DIFF0_VALUE                                  (cy_capsense_tuner.sensorContext[1].diff)
+#define CY_CAPSENSE_PROXIMITYW_SNS0_DIFF0_OFFSET                                 (150u)
+#define CY_CAPSENSE_PROXIMITYW_SNS0_DIFF0_SIZE                                   (2u)
+#define CY_CAPSENSE_PROXIMITYW_SNS0_DIFF0_PARAM_ID                               (0x02010096u)
+
+#define CY_CAPSENSE_PROXIMITYW_SNS0_STATUS0_VALUE                                (cy_capsense_tuner.sensorContext[1].status)
+#define CY_CAPSENSE_PROXIMITYW_SNS0_STATUS0_OFFSET                               (152u)
+#define CY_CAPSENSE_PROXIMITYW_SNS0_STATUS0_SIZE                                 (1u)
+#define CY_CAPSENSE_PROXIMITYW_SNS0_STATUS0_PARAM_ID                             (0x01010098u)
+
+#define CY_CAPSENSE_PROXIMITYW_SNS0_NEG_BSLN_RST_CNT0_VALUE                      (cy_capsense_tuner.sensorContext[1].negBslnRstCnt)
+#define CY_CAPSENSE_PROXIMITYW_SNS0_NEG_BSLN_RST_CNT0_OFFSET                     (153u)
+#define CY_CAPSENSE_PROXIMITYW_SNS0_NEG_BSLN_RST_CNT0_SIZE                       (1u)
+#define CY_CAPSENSE_PROXIMITYW_SNS0_NEG_BSLN_RST_CNT0_PARAM_ID                   (0x01010099u)
+
+#define CY_CAPSENSE_PROXIMITYW_SNS0_IDAC0_VALUE                                  (cy_capsense_tuner.sensorContext[1].idacComp)
+#define CY_CAPSENSE_PROXIMITYW_SNS0_IDAC0_OFFSET                                 (154u)
+#define CY_CAPSENSE_PROXIMITYW_SNS0_IDAC0_SIZE                                   (1u)
+#define CY_CAPSENSE_PROXIMITYW_SNS0_IDAC0_PARAM_ID                               (0x0101009au)
+
+#define CY_CAPSENSE_PROXIMITYW_SNS0_BSLN_EXT0_VALUE                              (cy_capsense_tuner.sensorContext[1].bslnExt)
+#define CY_CAPSENSE_PROXIMITYW_SNS0_BSLN_EXT0_OFFSET                             (155u)
+#define CY_CAPSENSE_PROXIMITYW_SNS0_BSLN_EXT0_SIZE                               (1u)
+#define CY_CAPSENSE_PROXIMITYW_SNS0_BSLN_EXT0_PARAM_ID                           (0x0101009bu)
 
 #else /* CY_CAPSENSE_MW_VERSION >= 300 */
 #define CY_CAPSENSE_CONFIG_ID_VALUE                                              (cy_capsense_tuner.commonContext.configId)
@@ -580,40 +768,225 @@ extern cy_stc_capsense_context_t cy_capsense_context;
 #define CY_CAPSENSE_PROXIMITY0_NUM_POSITIONS_SIZE                                (1u)
 #define CY_CAPSENSE_PROXIMITY0_NUM_POSITIONS_PARAM_ID                            (0x0100004cu)
 
+#define CY_CAPSENSE_PROXIMITYW_FINGER_CP_VALUE                                   (cy_capsense_tuner.widgetContext[1].fingerCap)
+#define CY_CAPSENSE_PROXIMITYW_FINGER_CP_OFFSET                                  (80u)
+#define CY_CAPSENSE_PROXIMITYW_FINGER_CP_SIZE                                    (2u)
+#define CY_CAPSENSE_PROXIMITYW_FINGER_CP_PARAM_ID                                (0x06010050u)
+
+#define CY_CAPSENSE_PROXIMITYW_SIGPFC_VALUE                                      (cy_capsense_tuner.widgetContext[1].sigPFC)
+#define CY_CAPSENSE_PROXIMITYW_SIGPFC_OFFSET                                     (82u)
+#define CY_CAPSENSE_PROXIMITYW_SIGPFC_SIZE                                       (2u)
+#define CY_CAPSENSE_PROXIMITYW_SIGPFC_PARAM_ID                                   (0x06010052u)
+
+#define CY_CAPSENSE_PROXIMITYW_RESOLUTION_VALUE                                  (cy_capsense_tuner.widgetContext[1].resolution)
+#define CY_CAPSENSE_PROXIMITYW_RESOLUTION_OFFSET                                 (84u)
+#define CY_CAPSENSE_PROXIMITYW_RESOLUTION_SIZE                                   (2u)
+#define CY_CAPSENSE_PROXIMITYW_RESOLUTION_PARAM_ID                               (0x06010054u)
+
+#define CY_CAPSENSE_PROXIMITYW_MAX_RAW_COUNT_VALUE                               (cy_capsense_tuner.widgetContext[1].maxRawCount)
+#define CY_CAPSENSE_PROXIMITYW_MAX_RAW_COUNT_OFFSET                              (86u)
+#define CY_CAPSENSE_PROXIMITYW_MAX_RAW_COUNT_SIZE                                (2u)
+#define CY_CAPSENSE_PROXIMITYW_MAX_RAW_COUNT_PARAM_ID                            (0x02010056u)
+
+#define CY_CAPSENSE_PROXIMITYW_ROW_MAX_RAW_COUNT_VALUE                           (cy_capsense_tuner.widgetContext[1].maxRawCountRow)
+#define CY_CAPSENSE_PROXIMITYW_ROW_MAX_RAW_COUNT_OFFSET                          (88u)
+#define CY_CAPSENSE_PROXIMITYW_ROW_MAX_RAW_COUNT_SIZE                            (2u)
+#define CY_CAPSENSE_PROXIMITYW_ROW_MAX_RAW_COUNT_PARAM_ID                        (0x02010058u)
+
+#define CY_CAPSENSE_PROXIMITYW_FINGER_TH_VALUE                                   (cy_capsense_tuner.widgetContext[1].fingerTh)
+#define CY_CAPSENSE_PROXIMITYW_FINGER_TH_OFFSET                                  (90u)
+#define CY_CAPSENSE_PROXIMITYW_FINGER_TH_SIZE                                    (2u)
+#define CY_CAPSENSE_PROXIMITYW_FINGER_TH_PARAM_ID                                (0x0601005au)
+
+#define CY_CAPSENSE_PROXIMITYW_PROX_TOUCH_TH_VALUE                               (cy_capsense_tuner.widgetContext[1].proxTh)
+#define CY_CAPSENSE_PROXIMITYW_PROX_TOUCH_TH_OFFSET                              (92u)
+#define CY_CAPSENSE_PROXIMITYW_PROX_TOUCH_TH_SIZE                                (2u)
+#define CY_CAPSENSE_PROXIMITYW_PROX_TOUCH_TH_PARAM_ID                            (0x0601005cu)
+
+#define CY_CAPSENSE_PROXIMITYW_LOW_BSLN_RST_VALUE                                (cy_capsense_tuner.widgetContext[1].lowBslnRst)
+#define CY_CAPSENSE_PROXIMITYW_LOW_BSLN_RST_OFFSET                               (94u)
+#define CY_CAPSENSE_PROXIMITYW_LOW_BSLN_RST_SIZE                                 (2u)
+#define CY_CAPSENSE_PROXIMITYW_LOW_BSLN_RST_PARAM_ID                             (0x0601005eu)
+
+#define CY_CAPSENSE_PROXIMITYW_SNS_CLK_VALUE                                     (cy_capsense_tuner.widgetContext[1].snsClk)
+#define CY_CAPSENSE_PROXIMITYW_SNS_CLK_OFFSET                                    (96u)
+#define CY_CAPSENSE_PROXIMITYW_SNS_CLK_SIZE                                      (2u)
+#define CY_CAPSENSE_PROXIMITYW_SNS_CLK_PARAM_ID                                  (0x06010060u)
+
+#define CY_CAPSENSE_PROXIMITYW_ROW_SNS_CLK_VALUE                                 (cy_capsense_tuner.widgetContext[1].rowSnsClk)
+#define CY_CAPSENSE_PROXIMITYW_ROW_SNS_CLK_OFFSET                                (98u)
+#define CY_CAPSENSE_PROXIMITYW_ROW_SNS_CLK_SIZE                                  (2u)
+#define CY_CAPSENSE_PROXIMITYW_ROW_SNS_CLK_PARAM_ID                              (0x06010062u)
+
+#define CY_CAPSENSE_PROXIMITYW_GESTURE_DETECTED_VALUE                            (cy_capsense_tuner.widgetContext[1].gestureDetected)
+#define CY_CAPSENSE_PROXIMITYW_GESTURE_DETECTED_OFFSET                           (100u)
+#define CY_CAPSENSE_PROXIMITYW_GESTURE_DETECTED_SIZE                             (2u)
+#define CY_CAPSENSE_PROXIMITYW_GESTURE_DETECTED_PARAM_ID                         (0x02010064u)
+
+#define CY_CAPSENSE_PROXIMITYW_GESTURE_DIRECTION_VALUE                           (cy_capsense_tuner.widgetContext[1].gestureDirection)
+#define CY_CAPSENSE_PROXIMITYW_GESTURE_DIRECTION_OFFSET                          (102u)
+#define CY_CAPSENSE_PROXIMITYW_GESTURE_DIRECTION_SIZE                            (2u)
+#define CY_CAPSENSE_PROXIMITYW_GESTURE_DIRECTION_PARAM_ID                        (0x02010066u)
+
+#define CY_CAPSENSE_PROXIMITYW_XDELTA_VALUE                                      (cy_capsense_tuner.widgetContext[1].xDelta)
+#define CY_CAPSENSE_PROXIMITYW_XDELTA_OFFSET                                     (104u)
+#define CY_CAPSENSE_PROXIMITYW_XDELTA_SIZE                                       (2u)
+#define CY_CAPSENSE_PROXIMITYW_XDELTA_PARAM_ID                                   (0x02010068u)
+
+#define CY_CAPSENSE_PROXIMITYW_YDELTA_VALUE                                      (cy_capsense_tuner.widgetContext[1].yDelta)
+#define CY_CAPSENSE_PROXIMITYW_YDELTA_OFFSET                                     (106u)
+#define CY_CAPSENSE_PROXIMITYW_YDELTA_SIZE                                       (2u)
+#define CY_CAPSENSE_PROXIMITYW_YDELTA_PARAM_ID                                   (0x0201006au)
+
+#define CY_CAPSENSE_PROXIMITYW_NOISE_TH_VALUE                                    (cy_capsense_tuner.widgetContext[1].noiseTh)
+#define CY_CAPSENSE_PROXIMITYW_NOISE_TH_OFFSET                                   (108u)
+#define CY_CAPSENSE_PROXIMITYW_NOISE_TH_SIZE                                     (2u)
+#define CY_CAPSENSE_PROXIMITYW_NOISE_TH_PARAM_ID                                 (0x0601006cu)
+
+#define CY_CAPSENSE_PROXIMITYW_NNOISE_TH_VALUE                                   (cy_capsense_tuner.widgetContext[1].nNoiseTh)
+#define CY_CAPSENSE_PROXIMITYW_NNOISE_TH_OFFSET                                  (110u)
+#define CY_CAPSENSE_PROXIMITYW_NNOISE_TH_SIZE                                    (2u)
+#define CY_CAPSENSE_PROXIMITYW_NNOISE_TH_PARAM_ID                                (0x0601006eu)
+
+#define CY_CAPSENSE_PROXIMITYW_HYSTERESIS_VALUE                                  (cy_capsense_tuner.widgetContext[1].hysteresis)
+#define CY_CAPSENSE_PROXIMITYW_HYSTERESIS_OFFSET                                 (112u)
+#define CY_CAPSENSE_PROXIMITYW_HYSTERESIS_SIZE                                   (2u)
+#define CY_CAPSENSE_PROXIMITYW_HYSTERESIS_PARAM_ID                               (0x06010070u)
+
+#define CY_CAPSENSE_PROXIMITYW_ON_DEBOUNCE_VALUE                                 (cy_capsense_tuner.widgetContext[1].onDebounce)
+#define CY_CAPSENSE_PROXIMITYW_ON_DEBOUNCE_OFFSET                                (114u)
+#define CY_CAPSENSE_PROXIMITYW_ON_DEBOUNCE_SIZE                                  (1u)
+#define CY_CAPSENSE_PROXIMITYW_ON_DEBOUNCE_PARAM_ID                              (0x05010072u)
+
+#define CY_CAPSENSE_PROXIMITYW_SNS_CLK_SOURCE_VALUE                              (cy_capsense_tuner.widgetContext[1].snsClkSource)
+#define CY_CAPSENSE_PROXIMITYW_SNS_CLK_SOURCE_OFFSET                             (115u)
+#define CY_CAPSENSE_PROXIMITYW_SNS_CLK_SOURCE_SIZE                               (1u)
+#define CY_CAPSENSE_PROXIMITYW_SNS_CLK_SOURCE_PARAM_ID                           (0x05010073u)
+
+#define CY_CAPSENSE_PROXIMITYW_IDAC_MOD0_VALUE                                   (cy_capsense_tuner.widgetContext[1].idacMod[0])
+#define CY_CAPSENSE_PROXIMITYW_IDAC_MOD0_OFFSET                                  (116u)
+#define CY_CAPSENSE_PROXIMITYW_IDAC_MOD0_SIZE                                    (1u)
+#define CY_CAPSENSE_PROXIMITYW_IDAC_MOD0_PARAM_ID                                (0x05010074u)
+
+#define CY_CAPSENSE_PROXIMITYW_IDAC_MOD1_VALUE                                   (cy_capsense_tuner.widgetContext[1].idacMod[1])
+#define CY_CAPSENSE_PROXIMITYW_IDAC_MOD1_OFFSET                                  (117u)
+#define CY_CAPSENSE_PROXIMITYW_IDAC_MOD1_SIZE                                    (1u)
+#define CY_CAPSENSE_PROXIMITYW_IDAC_MOD1_PARAM_ID                                (0x05010075u)
+
+#define CY_CAPSENSE_PROXIMITYW_IDAC_MOD2_VALUE                                   (cy_capsense_tuner.widgetContext[1].idacMod[2])
+#define CY_CAPSENSE_PROXIMITYW_IDAC_MOD2_OFFSET                                  (118u)
+#define CY_CAPSENSE_PROXIMITYW_IDAC_MOD2_SIZE                                    (1u)
+#define CY_CAPSENSE_PROXIMITYW_IDAC_MOD2_PARAM_ID                                (0x05010076u)
+
+#define CY_CAPSENSE_PROXIMITYW_IDAC_GAIN_INDEX_VALUE                             (cy_capsense_tuner.widgetContext[1].idacGainIndex)
+#define CY_CAPSENSE_PROXIMITYW_IDAC_GAIN_INDEX_OFFSET                            (119u)
+#define CY_CAPSENSE_PROXIMITYW_IDAC_GAIN_INDEX_SIZE                              (1u)
+#define CY_CAPSENSE_PROXIMITYW_IDAC_GAIN_INDEX_PARAM_ID                          (0x05010077u)
+
+#define CY_CAPSENSE_PROXIMITYW_ROW_IDAC_MOD0_VALUE                               (cy_capsense_tuner.widgetContext[1].rowIdacMod[0])
+#define CY_CAPSENSE_PROXIMITYW_ROW_IDAC_MOD0_OFFSET                              (120u)
+#define CY_CAPSENSE_PROXIMITYW_ROW_IDAC_MOD0_SIZE                                (1u)
+#define CY_CAPSENSE_PROXIMITYW_ROW_IDAC_MOD0_PARAM_ID                            (0x05010078u)
+
+#define CY_CAPSENSE_PROXIMITYW_ROW_IDAC_MOD1_VALUE                               (cy_capsense_tuner.widgetContext[1].rowIdacMod[1])
+#define CY_CAPSENSE_PROXIMITYW_ROW_IDAC_MOD1_OFFSET                              (121u)
+#define CY_CAPSENSE_PROXIMITYW_ROW_IDAC_MOD1_SIZE                                (1u)
+#define CY_CAPSENSE_PROXIMITYW_ROW_IDAC_MOD1_PARAM_ID                            (0x05010079u)
+
+#define CY_CAPSENSE_PROXIMITYW_ROW_IDAC_MOD2_VALUE                               (cy_capsense_tuner.widgetContext[1].rowIdacMod[2])
+#define CY_CAPSENSE_PROXIMITYW_ROW_IDAC_MOD2_OFFSET                              (122u)
+#define CY_CAPSENSE_PROXIMITYW_ROW_IDAC_MOD2_SIZE                                (1u)
+#define CY_CAPSENSE_PROXIMITYW_ROW_IDAC_MOD2_PARAM_ID                            (0x0501007au)
+
+#define CY_CAPSENSE_PROXIMITYW_PROX_IIR_BL_N_VALUE                               (cy_capsense_tuner.widgetContext[1].bslnCoeff)
+#define CY_CAPSENSE_PROXIMITYW_PROX_IIR_BL_N_OFFSET                              (123u)
+#define CY_CAPSENSE_PROXIMITYW_PROX_IIR_BL_N_SIZE                                (1u)
+#define CY_CAPSENSE_PROXIMITYW_PROX_IIR_BL_N_PARAM_ID                            (0x0101007bu)
+
+#define CY_CAPSENSE_PROXIMITYW_STATUS_VALUE                                      (cy_capsense_tuner.widgetContext[1].status)
+#define CY_CAPSENSE_PROXIMITYW_STATUS_OFFSET                                     (124u)
+#define CY_CAPSENSE_PROXIMITYW_STATUS_SIZE                                       (1u)
+#define CY_CAPSENSE_PROXIMITYW_STATUS_PARAM_ID                                   (0x0101007cu)
+
+#define CY_CAPSENSE_PROXIMITYW_PTRPOSITION_VALUE                                 (cy_capsense_tuner.widgetContext[1].wdTouch.ptrPosition)
+#define CY_CAPSENSE_PROXIMITYW_PTRPOSITION_OFFSET                                (128u)
+#define CY_CAPSENSE_PROXIMITYW_PTRPOSITION_SIZE                                  (4u)
+#define CY_CAPSENSE_PROXIMITYW_PTRPOSITION_PARAM_ID                              (0x03010080u)
+
+#define CY_CAPSENSE_PROXIMITYW_NUM_POSITIONS_VALUE                               (cy_capsense_tuner.widgetContext[1].wdTouch.numPosition)
+#define CY_CAPSENSE_PROXIMITYW_NUM_POSITIONS_OFFSET                              (132u)
+#define CY_CAPSENSE_PROXIMITYW_NUM_POSITIONS_SIZE                                (1u)
+#define CY_CAPSENSE_PROXIMITYW_NUM_POSITIONS_PARAM_ID                            (0x01010084u)
+
 #define CY_CAPSENSE_PROXIMITY0_SNS0_RAW0_VALUE                                   (cy_capsense_tuner.sensorContext[0].raw)
-#define CY_CAPSENSE_PROXIMITY0_SNS0_RAW0_OFFSET                                  (80u)
+#define CY_CAPSENSE_PROXIMITY0_SNS0_RAW0_OFFSET                                  (136u)
 #define CY_CAPSENSE_PROXIMITY0_SNS0_RAW0_SIZE                                    (2u)
-#define CY_CAPSENSE_PROXIMITY0_SNS0_RAW0_PARAM_ID                                (0x02000050u)
+#define CY_CAPSENSE_PROXIMITY0_SNS0_RAW0_PARAM_ID                                (0x02000088u)
 
 #define CY_CAPSENSE_PROXIMITY0_SNS0_BSLN0_VALUE                                  (cy_capsense_tuner.sensorContext[0].bsln)
-#define CY_CAPSENSE_PROXIMITY0_SNS0_BSLN0_OFFSET                                 (82u)
+#define CY_CAPSENSE_PROXIMITY0_SNS0_BSLN0_OFFSET                                 (138u)
 #define CY_CAPSENSE_PROXIMITY0_SNS0_BSLN0_SIZE                                   (2u)
-#define CY_CAPSENSE_PROXIMITY0_SNS0_BSLN0_PARAM_ID                               (0x02000052u)
+#define CY_CAPSENSE_PROXIMITY0_SNS0_BSLN0_PARAM_ID                               (0x0200008au)
 
 #define CY_CAPSENSE_PROXIMITY0_SNS0_DIFF0_VALUE                                  (cy_capsense_tuner.sensorContext[0].diff)
-#define CY_CAPSENSE_PROXIMITY0_SNS0_DIFF0_OFFSET                                 (84u)
+#define CY_CAPSENSE_PROXIMITY0_SNS0_DIFF0_OFFSET                                 (140u)
 #define CY_CAPSENSE_PROXIMITY0_SNS0_DIFF0_SIZE                                   (2u)
-#define CY_CAPSENSE_PROXIMITY0_SNS0_DIFF0_PARAM_ID                               (0x02000054u)
+#define CY_CAPSENSE_PROXIMITY0_SNS0_DIFF0_PARAM_ID                               (0x0200008cu)
 
 #define CY_CAPSENSE_PROXIMITY0_SNS0_STATUS0_VALUE                                (cy_capsense_tuner.sensorContext[0].status)
-#define CY_CAPSENSE_PROXIMITY0_SNS0_STATUS0_OFFSET                               (86u)
+#define CY_CAPSENSE_PROXIMITY0_SNS0_STATUS0_OFFSET                               (142u)
 #define CY_CAPSENSE_PROXIMITY0_SNS0_STATUS0_SIZE                                 (1u)
-#define CY_CAPSENSE_PROXIMITY0_SNS0_STATUS0_PARAM_ID                             (0x01000056u)
+#define CY_CAPSENSE_PROXIMITY0_SNS0_STATUS0_PARAM_ID                             (0x0100008eu)
 
 #define CY_CAPSENSE_PROXIMITY0_SNS0_NEG_BSLN_RST_CNT0_VALUE                      (cy_capsense_tuner.sensorContext[0].negBslnRstCnt)
-#define CY_CAPSENSE_PROXIMITY0_SNS0_NEG_BSLN_RST_CNT0_OFFSET                     (87u)
+#define CY_CAPSENSE_PROXIMITY0_SNS0_NEG_BSLN_RST_CNT0_OFFSET                     (143u)
 #define CY_CAPSENSE_PROXIMITY0_SNS0_NEG_BSLN_RST_CNT0_SIZE                       (1u)
-#define CY_CAPSENSE_PROXIMITY0_SNS0_NEG_BSLN_RST_CNT0_PARAM_ID                   (0x01000057u)
+#define CY_CAPSENSE_PROXIMITY0_SNS0_NEG_BSLN_RST_CNT0_PARAM_ID                   (0x0100008fu)
 
 #define CY_CAPSENSE_PROXIMITY0_SNS0_IDAC0_VALUE                                  (cy_capsense_tuner.sensorContext[0].idacComp)
-#define CY_CAPSENSE_PROXIMITY0_SNS0_IDAC0_OFFSET                                 (88u)
+#define CY_CAPSENSE_PROXIMITY0_SNS0_IDAC0_OFFSET                                 (144u)
 #define CY_CAPSENSE_PROXIMITY0_SNS0_IDAC0_SIZE                                   (1u)
-#define CY_CAPSENSE_PROXIMITY0_SNS0_IDAC0_PARAM_ID                               (0x01000058u)
+#define CY_CAPSENSE_PROXIMITY0_SNS0_IDAC0_PARAM_ID                               (0x01000090u)
 
 #define CY_CAPSENSE_PROXIMITY0_SNS0_BSLN_EXT0_VALUE                              (cy_capsense_tuner.sensorContext[0].bslnExt)
-#define CY_CAPSENSE_PROXIMITY0_SNS0_BSLN_EXT0_OFFSET                             (89u)
+#define CY_CAPSENSE_PROXIMITY0_SNS0_BSLN_EXT0_OFFSET                             (145u)
 #define CY_CAPSENSE_PROXIMITY0_SNS0_BSLN_EXT0_SIZE                               (1u)
-#define CY_CAPSENSE_PROXIMITY0_SNS0_BSLN_EXT0_PARAM_ID                           (0x01000059u)
+#define CY_CAPSENSE_PROXIMITY0_SNS0_BSLN_EXT0_PARAM_ID                           (0x01000091u)
+
+#define CY_CAPSENSE_PROXIMITYW_SNS0_RAW0_VALUE                                   (cy_capsense_tuner.sensorContext[1].raw)
+#define CY_CAPSENSE_PROXIMITYW_SNS0_RAW0_OFFSET                                  (146u)
+#define CY_CAPSENSE_PROXIMITYW_SNS0_RAW0_SIZE                                    (2u)
+#define CY_CAPSENSE_PROXIMITYW_SNS0_RAW0_PARAM_ID                                (0x02010092u)
+
+#define CY_CAPSENSE_PROXIMITYW_SNS0_BSLN0_VALUE                                  (cy_capsense_tuner.sensorContext[1].bsln)
+#define CY_CAPSENSE_PROXIMITYW_SNS0_BSLN0_OFFSET                                 (148u)
+#define CY_CAPSENSE_PROXIMITYW_SNS0_BSLN0_SIZE                                   (2u)
+#define CY_CAPSENSE_PROXIMITYW_SNS0_BSLN0_PARAM_ID                               (0x02010094u)
+
+#define CY_CAPSENSE_PROXIMITYW_SNS0_DIFF0_VALUE                                  (cy_capsense_tuner.sensorContext[1].diff)
+#define CY_CAPSENSE_PROXIMITYW_SNS0_DIFF0_OFFSET                                 (150u)
+#define CY_CAPSENSE_PROXIMITYW_SNS0_DIFF0_SIZE                                   (2u)
+#define CY_CAPSENSE_PROXIMITYW_SNS0_DIFF0_PARAM_ID                               (0x02010096u)
+
+#define CY_CAPSENSE_PROXIMITYW_SNS0_STATUS0_VALUE                                (cy_capsense_tuner.sensorContext[1].status)
+#define CY_CAPSENSE_PROXIMITYW_SNS0_STATUS0_OFFSET                               (152u)
+#define CY_CAPSENSE_PROXIMITYW_SNS0_STATUS0_SIZE                                 (1u)
+#define CY_CAPSENSE_PROXIMITYW_SNS0_STATUS0_PARAM_ID                             (0x01010098u)
+
+#define CY_CAPSENSE_PROXIMITYW_SNS0_NEG_BSLN_RST_CNT0_VALUE                      (cy_capsense_tuner.sensorContext[1].negBslnRstCnt)
+#define CY_CAPSENSE_PROXIMITYW_SNS0_NEG_BSLN_RST_CNT0_OFFSET                     (153u)
+#define CY_CAPSENSE_PROXIMITYW_SNS0_NEG_BSLN_RST_CNT0_SIZE                       (1u)
+#define CY_CAPSENSE_PROXIMITYW_SNS0_NEG_BSLN_RST_CNT0_PARAM_ID                   (0x01010099u)
+
+#define CY_CAPSENSE_PROXIMITYW_SNS0_IDAC0_VALUE                                  (cy_capsense_tuner.sensorContext[1].idacComp)
+#define CY_CAPSENSE_PROXIMITYW_SNS0_IDAC0_OFFSET                                 (154u)
+#define CY_CAPSENSE_PROXIMITYW_SNS0_IDAC0_SIZE                                   (1u)
+#define CY_CAPSENSE_PROXIMITYW_SNS0_IDAC0_PARAM_ID                               (0x0101009au)
+
+#define CY_CAPSENSE_PROXIMITYW_SNS0_BSLN_EXT0_VALUE                              (cy_capsense_tuner.sensorContext[1].bslnExt)
+#define CY_CAPSENSE_PROXIMITYW_SNS0_BSLN_EXT0_OFFSET                             (155u)
+#define CY_CAPSENSE_PROXIMITYW_SNS0_BSLN_EXT0_SIZE                               (1u)
+#define CY_CAPSENSE_PROXIMITYW_SNS0_BSLN_EXT0_PARAM_ID                           (0x0101009bu)
 
 #endif
 /* cy_capsense_context */
@@ -940,11 +1313,79 @@ extern cy_stc_capsense_context_t cy_capsense_context;
 #define CY_CAPSENSE_PROXIMITY0_WD_TYPE_VALUE                                     (cy_capsense_context.ptrWdConfig[0u].wdType)
 #define CY_CAPSENSE_PROXIMITY0_WD_TYPE_SIZE                                      (sizeof(cy_capsense_context.ptrWdConfig[0u].wdType))
 
+#define CY_CAPSENSE_PROXIMITYW_PTR_WD_CONTEXT_VALUE                              (cy_capsense_context.ptrWdConfig[1u].ptrWdContext)
+#define CY_CAPSENSE_PROXIMITYW_PTR_WD_CONTEXT_SIZE                               (sizeof(cy_capsense_context.ptrWdConfig[1u].ptrWdContext))
+#define CY_CAPSENSE_PROXIMITYW_PTR_SNS_CONTEXT_VALUE                             (cy_capsense_context.ptrWdConfig[1u].ptrSnsContext)
+#define CY_CAPSENSE_PROXIMITYW_PTR_SNS_CONTEXT_SIZE                              (sizeof(cy_capsense_context.ptrWdConfig[1u].ptrSnsContext))
+#define CY_CAPSENSE_PROXIMITYW_PTR_ELTD_CONTEXT_VALUE                            (cy_capsense_context.ptrWdConfig[1u].ptrEltdConfig)
+#define CY_CAPSENSE_PROXIMITYW_PTR_ELTD_CONTEXT_SIZE                             (sizeof(cy_capsense_context.ptrWdConfig[1u].ptrEltdConfig))
+#define CY_CAPSENSE_PROXIMITYW_PTR_ELTD_CAPACITANCE_VALUE                        (cy_capsense_context.ptrWdConfig[1u].ptrEltdCapacitance)
+#define CY_CAPSENSE_PROXIMITYW_PTR_ELTD_CAPACITANCE_SIZE                         (sizeof(cy_capsense_context.ptrWdConfig[1u].ptrEltdCapacitance))
+#define CY_CAPSENSE_PROXIMITYW_PTR_BSLN_INV_VALUE                                (cy_capsense_context.ptrWdConfig[1u].ptrBslnInv)
+#define CY_CAPSENSE_PROXIMITYW_PTR_BSLN_INV_SIZE                                 (sizeof(cy_capsense_context.ptrWdConfig[1u].ptrBslnInv))
+#define CY_CAPSENSE_PROXIMITYW_PTR_NOISE_ENVELOPE_VALUE                          (cy_capsense_context.ptrWdConfig[1u].ptrNoiseEnvelope)
+#define CY_CAPSENSE_PROXIMITYW_PTR_NOISE_ENVELOPE_SIZE                           (sizeof(cy_capsense_context.ptrWdConfig[1u].ptrNoiseEnvelope))
+#define CY_CAPSENSE_PROXIMITYW_PTR_RAW_FILTER_HISTORY_VALUE                      (cy_capsense_context.ptrWdConfig[1u].ptrRawFilterHistory)
+#define CY_CAPSENSE_PROXIMITYW_PTR_RAW_FILTER_HISTORY_SIZE                       (sizeof(cy_capsense_context.ptrWdConfig[1u].ptrRawFilterHistory))
+#define CY_CAPSENSE_PROXIMITYW_PTR_RAW_FILTER_HISTORY_LOW_VALUE                  (cy_capsense_context.ptrWdConfig[1u].ptrRawFilterHistoryLow)
+#define CY_CAPSENSE_PROXIMITYW_PTR_RAW_FILTER_HISTORY_LOW_SIZE                   (sizeof(cy_capsense_context.ptrWdConfig[1u].ptrRawFilterHistoryLow))
+#define CY_CAPSENSE_PROXIMITYW_IIR_COEFF_VALUE                                   (cy_capsense_context.ptrWdConfig[1u].iirCoeff)
+#define CY_CAPSENSE_PROXIMITYW_IIR_COEFF_SIZE                                    (sizeof(cy_capsense_context.ptrWdConfig[1u].iirCoeff))
+#define CY_CAPSENSE_PROXIMITYW_PTR_DEBOUNCE_ARR_VALUE                            (cy_capsense_context.ptrWdConfig[1u].ptrDebounceArr)
+#define CY_CAPSENSE_PROXIMITYW_PTR_DEBOUNCE_ARR_SIZE                             (sizeof(cy_capsense_context.ptrWdConfig[1u].ptrDebounceArr))
+#define CY_CAPSENSE_PROXIMITYW_PTR_DIPLEX_TABLE_VALUE                            (cy_capsense_context.ptrWdConfig[1u].ptrDiplexTable)
+#define CY_CAPSENSE_PROXIMITYW_PTR_DIPLEX_TABLE_SIZE                             (sizeof(cy_capsense_context.ptrWdConfig[1u].ptrDiplexTable))
+#define CY_CAPSENSE_PROXIMITYW_CENTROID_CONFIG_VALUE                             (cy_capsense_context.ptrWdConfig[1u].centroidConfig)
+#define CY_CAPSENSE_PROXIMITYW_CENTROID_CONFIG_SIZE                              (sizeof(cy_capsense_context.ptrWdConfig[1u].centroidConfig))
+#define CY_CAPSENSE_PROXIMITYW_X_RESOLUTION_VALUE                                (cy_capsense_context.ptrWdConfig[1u].xResolution)
+#define CY_CAPSENSE_PROXIMITYW_X_RESOLUTION_SIZE                                 (sizeof(cy_capsense_context.ptrWdConfig[1u].xResolution))
+#define CY_CAPSENSE_PROXIMITYW_Y_RESOLUTION_VALUE                                (cy_capsense_context.ptrWdConfig[1u].yResolution)
+#define CY_CAPSENSE_PROXIMITYW_Y_RESOLUTION_SIZE                                 (sizeof(cy_capsense_context.ptrWdConfig[1u].yResolution))
+#define CY_CAPSENSE_PROXIMITYW_NUM_SNS_VALUE                                     (cy_capsense_context.ptrWdConfig[1u].numSns)
+#define CY_CAPSENSE_PROXIMITYW_NUM_SNS_SIZE                                      (sizeof(cy_capsense_context.ptrWdConfig[1u].numSns))
+#define CY_CAPSENSE_PROXIMITYW_NUM_COLS_VALUE                                    (cy_capsense_context.ptrWdConfig[1u].numCols)
+#define CY_CAPSENSE_PROXIMITYW_NUM_COLS_SIZE                                     (sizeof(cy_capsense_context.ptrWdConfig[1u].numCols))
+#define CY_CAPSENSE_PROXIMITYW_NUM_ROWS_VALUE                                    (cy_capsense_context.ptrWdConfig[1u].numRows)
+#define CY_CAPSENSE_PROXIMITYW_NUM_ROWS_SIZE                                     (sizeof(cy_capsense_context.ptrWdConfig[1u].numRows))
+#define CY_CAPSENSE_PROXIMITYW_PTR_POS_FILTER_HISTORY_VALUE                      (cy_capsense_context.ptrWdConfig[1u].ptrPosFilterHistory)
+#define CY_CAPSENSE_PROXIMITYW_PTR_POS_FILTER_HISTORY_SIZE                       (sizeof(cy_capsense_context.ptrWdConfig[1u].ptrPosFilterHistory))
+#define CY_CAPSENSE_PROXIMITYW_PTR_CSX_TOUCH_HISTORY_VALUE                       (cy_capsense_context.ptrWdConfig[1u].ptrCsxTouchHistory)
+#define CY_CAPSENSE_PROXIMITYW_PTR_CSX_TOUCH_HISTORY_SIZE                        (sizeof(cy_capsense_context.ptrWdConfig[1u].ptrCsxTouchHistory))
+#define CY_CAPSENSE_PROXIMITYW_PTR_CSX_TOUCH_BUFFER_VALUE                        (cy_capsense_context.ptrWdConfig[1u].ptrCsxTouchBuffer)
+#define CY_CAPSENSE_PROXIMITYW_PTR_CSX_TOUCH_BUFFER_SIZE                         (sizeof(cy_capsense_context.ptrWdConfig[1u].ptrCsxTouchBuffer))
+#define CY_CAPSENSE_PROXIMITYW_PTR_CSD_TOUCH_BUFFER_VALUE                        (cy_capsense_context.ptrWdConfig[1u].ptrCsdTouchBuffer)
+#define CY_CAPSENSE_PROXIMITYW_PTR_CSD_TOUCH_BUFFER_SIZE                         (sizeof(cy_capsense_context.ptrWdConfig[1u].ptrCsdTouchBuffer))
+#define CY_CAPSENSE_PROXIMITYW_PTR_GESTURE_CONFIG_VALUE                          (cy_capsense_context.ptrWdConfig[1u].ptrGestureConfig)
+#define CY_CAPSENSE_PROXIMITYW_PTR_GESTURE_CONFIG_SIZE                           (sizeof(cy_capsense_context.ptrWdConfig[1u].ptrGestureConfig))
+#define CY_CAPSENSE_PROXIMITYW_PTR_GESTURE_CONTEXT_VALUE                         (cy_capsense_context.ptrWdConfig[1u].ptrGestureContext)
+#define CY_CAPSENSE_PROXIMITYW_PTR_GESTURE_CONTEXT_SIZE                          (sizeof(cy_capsense_context.ptrWdConfig[1u].ptrGestureContext))
+#define CY_CAPSENSE_PROXIMITYW_BALLISTIC_CONFIG_VALUE                            (cy_capsense_context.ptrWdConfig[1u].ballisticConfig)
+#define CY_CAPSENSE_PROXIMITYW_BALLISTIC_CONFIG_SIZE                             (sizeof(cy_capsense_context.ptrWdConfig[1u].ballisticConfig))
+#define CY_CAPSENSE_PROXIMITYW_PTR_BALLISTIC_CONTEXT_VALUE                       (cy_capsense_context.ptrWdConfig[1u].ptrBallisticContext)
+#define CY_CAPSENSE_PROXIMITYW_PTR_BALLISTIC_CONTEXT_SIZE                        (sizeof(cy_capsense_context.ptrWdConfig[1u].ptrBallisticContext))
+#define CY_CAPSENSE_PROXIMITYW_AIIR_CONFIG_VALUE                                 (cy_capsense_context.ptrWdConfig[1u].aiirConfig)
+#define CY_CAPSENSE_PROXIMITYW_AIIR_CONFIG_SIZE                                  (sizeof(cy_capsense_context.ptrWdConfig[1u].aiirConfig))
+#define CY_CAPSENSE_PROXIMITYW_ADV_CONFIG_VALUE                                  (cy_capsense_context.ptrWdConfig[1u].advConfig)
+#define CY_CAPSENSE_PROXIMITYW_ADV_CONFIG_SIZE                                   (sizeof(cy_capsense_context.ptrWdConfig[1u].advConfig))
+#define CY_CAPSENSE_PROXIMITYW_POS_FILTER_CONFIG_VALUE                           (cy_capsense_context.ptrWdConfig[1u].posFilterConfig)
+#define CY_CAPSENSE_PROXIMITYW_POS_FILTER_CONFIG_SIZE                            (sizeof(cy_capsense_context.ptrWdConfig[1u].posFilterConfig))
+#define CY_CAPSENSE_PROXIMITYW_RAW_FILTER_CONFIG_VALUE                           (cy_capsense_context.ptrWdConfig[1u].rawFilterConfig)
+#define CY_CAPSENSE_PROXIMITYW_RAW_FILTER_CONFIG_SIZE                            (sizeof(cy_capsense_context.ptrWdConfig[1u].rawFilterConfig))
+#define CY_CAPSENSE_PROXIMITYW_SENSE_METHOD_VALUE                                (cy_capsense_context.ptrWdConfig[1u].senseMethod)
+#define CY_CAPSENSE_PROXIMITYW_SENSE_METHOD_SIZE                                 (sizeof(cy_capsense_context.ptrWdConfig[1u].senseMethod))
+#define CY_CAPSENSE_PROXIMITYW_WD_TYPE_VALUE                                     (cy_capsense_context.ptrWdConfig[1u].wdType)
+#define CY_CAPSENSE_PROXIMITYW_WD_TYPE_SIZE                                      (sizeof(cy_capsense_context.ptrWdConfig[1u].wdType))
+
 /* cy_capsense_pinConfig */
 #define CY_CAPSENSE_PROXIMITY0_SNS0_PIN0_PC_PTR_VALUE                            (cy_capsense_context.ptrPinConfig[0].pcPtr)
 #define CY_CAPSENSE_PROXIMITY0_SNS0_PIN0_PC_PTR_SIZE                             (sizeof(cy_capsense_context.ptrPinConfig[0].pcPtr))
 #define CY_CAPSENSE_PROXIMITY0_SNS0_PIN0_NUMBER_VALUE                            (cy_capsense_context.ptrPinConfig[0].pinNumber)
 #define CY_CAPSENSE_PROXIMITY0_SNS0_PIN0_NUMBER_SIZE                             (sizeof(cy_capsense_context.ptrPinConfig[0].pinNumber))
+
+#define CY_CAPSENSE_PROXIMITYW_SNS0_PIN0_PC_PTR_VALUE                            (cy_capsense_context.ptrPinConfig[1].pcPtr)
+#define CY_CAPSENSE_PROXIMITYW_SNS0_PIN0_PC_PTR_SIZE                             (sizeof(cy_capsense_context.ptrPinConfig[1].pcPtr))
+#define CY_CAPSENSE_PROXIMITYW_SNS0_PIN0_NUMBER_VALUE                            (cy_capsense_context.ptrPinConfig[1].pinNumber)
+#define CY_CAPSENSE_PROXIMITYW_SNS0_PIN0_NUMBER_SIZE                             (sizeof(cy_capsense_context.ptrPinConfig[1].pinNumber))
 
 /* cy_capsense_electrodeConfig */
 #define CY_CAPSENSE_PROXIMITY0_SNS0_CFG_PTR_VALUE                                (cy_capsense_context.ptrWdConfig[0].ptrEltdConfig[0].ptrPin)
@@ -954,13 +1395,24 @@ extern cy_stc_capsense_context_t cy_capsense_context;
 #define CY_CAPSENSE_PROXIMITY0_SNS0_NUM_PINS_VALUE                               (cy_capsense_context.ptrWdConfig[0].ptrEltdConfig[0].numPins)
 #define CY_CAPSENSE_PROXIMITY0_SNS0_NUM_PINS_SIZE                                (sizeof(cy_capsense_context.ptrWdConfig[0].ptrEltdConfig[0].numPins))
 
+#define CY_CAPSENSE_PROXIMITYW_SNS0_CFG_PTR_VALUE                                (cy_capsense_context.ptrWdConfig[1].ptrEltdConfig[0].ptrPin)
+#define CY_CAPSENSE_PROXIMITYW_SNS0_CFG_PTR_SIZE                                 (sizeof(cy_capsense_context.ptrWdConfig[1].ptrEltdConfig[0].ptrPin))
+#define CY_CAPSENSE_PROXIMITYW_SNS0_ELTD_TYPE_VALUE                              (cy_capsense_context.ptrWdConfig[1].ptrEltdConfig[0].type)
+#define CY_CAPSENSE_PROXIMITYW_SNS0_ELTD_TYPE_SIZE                               (sizeof(cy_capsense_context.ptrWdConfig[1].ptrEltdConfig[0].type))
+#define CY_CAPSENSE_PROXIMITYW_SNS0_NUM_PINS_VALUE                               (cy_capsense_context.ptrWdConfig[1].ptrEltdConfig[0].numPins)
+#define CY_CAPSENSE_PROXIMITYW_SNS0_NUM_PINS_SIZE                                (sizeof(cy_capsense_context.ptrWdConfig[1].ptrEltdConfig[0].numPins))
 
-#if ((CY_CAPSENSE_PERI_CLK / 2) > 50000000)
+
+#if ((CY_CAPSENSE_PERI_CLK / 8) > 50000000)
     #warning The maximum CSD modulator clock frequency is 50 MHz: increase CSD modulator clock divider to meet the valid operation conditions
 #endif
 
-#if ((CY_CAPSENSE_PERI_CLK / 2 / 4) > 6000000)
+#if ((CY_CAPSENSE_PERI_CLK / 8 / 8) > 6000000)
     #warning The maximum Sense clock frequency is 6 MHz: increase Sense clock divider for widget Proximity0 to meet the valid operation conditions
+#endif
+
+#if ((CY_CAPSENSE_PERI_CLK / 8 / 4) > 6000000)
+    #warning The maximum Sense clock frequency is 6 MHz: increase Sense clock divider for widget ProximityW to meet the valid operation conditions
 #endif
 
 
